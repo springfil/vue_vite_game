@@ -13,7 +13,8 @@ module.exports = {
         ecmaVersion: 2022,
         sourceType: 'module',
     },
-    parser: 'babel-eslint',
+
+    parser: ['@babel/eslint-parser', 'babel-eslint'], 
     plugins: ['babel'],
     rules: {
         'object-curly-newline': 'off',
@@ -32,7 +33,7 @@ module.exports = {
         'no-prototype-builtins': 'error',
         'no-restricted-syntax': 'off', // need sort it out
         'implicit-arrow-linebreak': ['error', 'below'],
-        'camelcase': 'off',
+        camelcase: 'off',
         'max-classes-per-file': ['error', { max: 2 }],
         'no-shadow': 'off', // a lot of errors
         'new-cap': 'off',
