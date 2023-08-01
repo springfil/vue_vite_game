@@ -2,20 +2,20 @@
 import { computed, inject } from "vue";
 import PersonImage from "./PersonImage.vue";
 import PersonProgressBar from "./PersonProgressBar.vue";
+import nezuko_small from '@/assets/nezuko_small.jpg'
+import nezuko_medium from '@/assets/nezuko_medium.jpg'
+import nezuko_high from '@/assets/nezuko_high.jpg'
 
 const difficult = inject("data");
 
 const getImageUrl = computed(() => {
     switch (difficult.value) {
         case 2:
-            console.log("case 2");
-            return "https://m.media-amazon.com/images/I/61ltDPXMtpS._AC_UL960_QL65_.jpg";
+            return nezuko_small ;
         case 4:
-            console.log("case 4");
-            return "https://store.aniplexusa.com/demonslayer/nezuko-kamado-buzzmod-ver/images/6.jpg";
+            return nezuko_medium;
         case 6:
-            console.log("case 6");
-            return "https://store.aniplexusa.com/demonslayer/nezuko-kamado-exploding-blood/images/7.jpg";
+            return nezuko_high;
         default:
             return "../assets/logo.png";
     }

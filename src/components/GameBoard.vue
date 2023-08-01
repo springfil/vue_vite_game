@@ -68,7 +68,7 @@ const { selectField, isNext, isReset } = useGameProcess(
     justify-content: center;
 }
 .board {
-    width: 350px;
+    width: 250px;
     background: #eee;
     border: none;
     border-radius: 10px;

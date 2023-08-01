@@ -6,7 +6,7 @@ defineProps(["imageUrl"]);
 
 <template>
     <div class="image-frame">
-        <img class="sizeimg" :src="imageUrl" alt="Image" />
+        <img class="sizeimg" :src="imageUrl" alt="" />
     </div>
 </template>
 
@@ -17,8 +17,8 @@ defineProps(["imageUrl"]);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 480px;
-    width: 360px;
+    height: 320px;
+    width: 240px;
 }
 .sizeimg {
     object-fit: cover;

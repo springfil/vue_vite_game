@@ -16,11 +16,12 @@ defineProps(["progressBarWidth"]);
     border-radius: 15px;
     height: 20px;
     margin-top: 10px;
-    width: 360px;
+    width: 240px;
 }
 
 .progress-bar {
     height: 100%;
     background-color: #c0392b;
+    border-radius: 15px;
 }
 </style>

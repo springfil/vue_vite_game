@@ -13,9 +13,6 @@ module.exports = {
         ecmaVersion: 2022,
         sourceType: 'module',
     },
-
-    parser: ['@babel/eslint-parser', 'babel-eslint'], 
-    plugins: ['babel'],
     rules: {
         'object-curly-newline': 'off',
         semi: 'off',

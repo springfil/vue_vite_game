@@ -16,7 +16,7 @@ provide("data", data);
         <div class="center-column">
             <div class="app">
                 <img class="logo" src="./assets/logo.png" alt="Vue logo" />
-                <h1 class="h1">Коробка удачи</h1>
+                <h2 class="h2">Коробка удачи</h2>
                 <game-board />
             </div>
         </div>
@@ -31,6 +31,7 @@ provide("data", data);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 .left-column,
@@ -52,7 +53,7 @@ provide("data", data);
 }
 
 .logo {
-    width: 100px;
+    width: 70px;
     animation: floatingAnimation 1.5s infinite ease-in-out alternate;
 }
 
