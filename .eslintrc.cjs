@@ -1,7 +1,7 @@
 module.exports = {
     env: {
         browser: true,
-        es2021: true,
+        es2022: true,
     },
     extends: [
         'prettier',
@@ -10,10 +10,11 @@ module.exports = {
         'plugin:import/recommended',
     ],
     parserOptions: {
-        ecmaVersion: 13,
+        ecmaVersion: 2022,
         sourceType: 'module',
     },
-    plugins: [],
+    parser: 'babel-eslint',
+    plugins: ['babel'],
     rules: {
         'object-curly-newline': 'off',
         semi: 'off',
@@ -28,13 +29,10 @@ module.exports = {
             'warn',
             { blocks: 'never', classes: 'always', switches: 'never' },
         ],
-        'import/no-extraneous-dependencies': 'off',
-        'import/no-cycle': 'off',
-        'import/no-duplicates': 'error',
         'no-prototype-builtins': 'error',
         'no-restricted-syntax': 'off', // need sort it out
         'implicit-arrow-linebreak': ['error', 'below'],
-        camelcase: 'off',
+        'camelcase': 'off',
         'max-classes-per-file': ['error', { max: 2 }],
         'no-shadow': 'off', // a lot of errors
         'new-cap': 'off',
@@ -70,10 +68,6 @@ module.exports = {
         'prefer-destructuring': 'off',
         'prefer-rest-params': 'off',
         'prefer-const': 'off',
-        'import/prefer-default-export': 'off',
-        'import/order': 'off',
-        'import/namespace': 'off',
-        'import/no-unresolved': 'off',
         'class-methods-use-this': 'error',
         'no-param-reassign': ['off', { props: false }],
     },
