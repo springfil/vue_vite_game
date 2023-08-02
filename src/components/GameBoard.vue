@@ -1,21 +1,22 @@
 <script setup>
-import { ref, inject } from "vue";
-import BoardItem from "@/components/BoardItem.vue";
-import useGameInit from "@/composable/useGameInit";
-import useGameStart from "@/composable/useGameStart";
-import useGameProcess from "@/composable/useGameProcess";
-import { GAME_STATUS } from "@/constants/GAME_STATUS";
+import { ref, inject } from 'vue'
+import GameBoardLog from '@/components/GameBoardLog.vue'
+import BoardItem from '@/components/BoardItem.vue'
+import useGameInit from '@/composable/useGameInit'
+import useGameStart from '@/composable/useGameStart'
+import useGameProcess from '@/composable/useGameProcess'
+import { GAME_STATUS } from '@/constants/GAME_STATUS'
 
-const data = inject("data");
+const data = inject('data')
 
 const updateData = () => {
-    data.value = difficult.value;
-};
+    data.value = difficult.value
+}
 
-const numberOfCells = 25;
-const gameStatus = ref(GAME_STATUS.NONE);
+const numberOfCells = 25
+const gameStatus = ref(GAME_STATUS.NONE)
 
-const { difficult, fields, init } = useGameInit(numberOfCells);
+const { difficult, fields, init } = useGameInit(numberOfCells)
 
 const { start, canStartGame } = useGameStart(
     init,
@@ -23,15 +24,15 @@ const { start, canStartGame } = useGameStart(
     difficult,
     numberOfCells,
     gameStatus,
-    updateData
-);
+    updateData,
+)
 
 const { selectField, isNext, isReset } = useGameProcess(
     fields,
     gameStatus,
     difficult,
-    start
-);
+    start,
+)
 </script>
 
 <template>
@@ -43,15 +44,13 @@ const { selectField, isNext, isReset } = useGameProcess(
                     v-for="field in fields"
                     :key="'item-' + field.id"
                     :field="field"
-                    @selectField="selectField($event)"
-                />
+                    @selectField="selectField($event)" />
             </div>
 
-            <p class="difficult">
-                Множитель атаки <strong>X*{{ difficult }}</strong>
-            </p>
-            <p class="next" v-if="isNext">УСИЛЕНИЕ</p>
-            <p class="reset" v-if="isReset">Попробуй снова</p>
+            <game-board-log
+                :difficult="difficult"
+                :isNext="isNext"
+                :isReset="isReset"></game-board-log>
 
             <button class="btn" @click="start" :disabled="!canStartGame">
                 Старт
@@ -94,5 +93,14 @@ const { selectField, isNext, isReset } = useGameProcess(
     align-items: center;
     justify-content: center;
     margin-top: 10px;
+}
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
 }
 </style>

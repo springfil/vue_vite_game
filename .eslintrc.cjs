@@ -3,12 +3,7 @@ module.exports = {
         browser: true,
         es2022: true,
     },
-    extends: [
-        'prettier',
-        'eslint:recommended',
-        'airbnb-base',
-        'plugin:import/recommended',
-    ],
+    extends: ['eslint:recommended','prettier'],
     parserOptions: {
         ecmaVersion: 2022,
         sourceType: 'module',
@@ -73,7 +68,7 @@ module.exports = {
         'import/resolver': {
             node: {
                 paths: ['src'],
-                extensions: ['.js'],
+                extensions: [''],
             },
         },
     },
