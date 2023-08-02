@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject } from 'vue'
+import { computed, inject, watch, ref } from 'vue'
 import PersonImage from './PersonImage.vue'
 import PersonProgressBar from './PersonProgressBar.vue'
 import nezuko_small from '@/assets/nezuko_small.jpg'
@@ -7,6 +7,7 @@ import nezuko_medium from '@/assets/nezuko_medium.jpg'
 import nezuko_high from '@/assets/nezuko_high.jpg'
 
 const difficult = inject('data')
+const getProgressBarWidth = ref(0)
 
 const getImageUrl = computed(() => {
     switch (difficult.value) {
@@ -17,15 +18,28 @@ const getImageUrl = computed(() => {
         case 6:
             return nezuko_high
         default:
-            return '../assets/logo.png'
+            return nezuko_high
     }
 })
+
+watch(difficult, (newDifficult) => {
+        if (newDifficult === 2) {
+            getProgressBarWidth.value = 10
+        } else if (newDifficult === 4){
+            getProgressBarWidth.value = 15  
+        } else if (newDifficult === 6){
+            getProgressBarWidth.value = 20  
+        }
+
+    })
+
 </script>
 
 <template>
     <div class="container">
         <person-image :image-url="getImageUrl" :key="difficult.value" />  
-        <person-progress-bar />
+        <person-progress-bar :progress-bar-width="getProgressBarWidth" />
+        {{ getProgressBarWidth }}
     </div>
 </template>
 

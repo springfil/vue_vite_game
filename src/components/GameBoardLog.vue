@@ -5,7 +5,7 @@
         </p>
         <transition name="slide-up">
             <p class="next" v-if="isNext">УСИЛЕНИЕ</p>
-            <p class="reset" v-else-if="isReset">Попробуй снова</p>
+            <p class="reset" v-else-if="isReset">БАЗОВАЯ АТАКА</p>
         </transition>
     </div>
 </template>

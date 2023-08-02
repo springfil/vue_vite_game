@@ -1,12 +1,20 @@
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, watch, ref } from "vue";
 
-defineProps(["progressBarWidth"]);
+const props = defineProps(["progressBarWidth"]);
+const width = ref(240); 
+
+watch(() => props.progressBarWidth, (newValue) => {
+    
+    width.value = width.value - newValue;
+    console.log(newValue);
+    console.log(width.value);
+}); 
 </script>
 
 <template>
     <div class="progress-bar-frame">
-        <div class="progress-bar" :style="{ width: progressBarWidth }"></div>
+        <div class="progress-bar" :style="{ width: width + 'px' }"></div>
     </div>
 </template>
 
@@ -23,5 +31,13 @@ defineProps(["progressBarWidth"]);
     height: 100%;
     background-color: #c0392b;
     border-radius: 15px;
+    transition: width 2s;
 }
 </style>
+
+// const props = defineProps(["progressBarWidth"]);
+
+// watch(() => props.progressBarWidth, (newValue) => {
+//     console.log(newValue);
+// });
+// const width = ref("240"); 
