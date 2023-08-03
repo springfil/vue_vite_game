@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject, watch, ref } from 'vue'
+import { computed, inject, watch, ref,reactive } from 'vue'
 import PersonImage from './PersonImage.vue'
 import PersonProgressBar from './PersonProgressBar.vue'
 import nezuko_small from '@/assets/nezuko_small.jpg'
@@ -7,7 +7,7 @@ import nezuko_medium from '@/assets/nezuko_medium.jpg'
 import nezuko_high from '@/assets/nezuko_high.jpg'
 
 const difficult = inject('data')
-const getProgressBarWidth = ref(0)
+const getProgressBarWidth = ref({})
 
 const getImageUrl = computed(() => {
     switch (difficult.value) {
@@ -23,28 +23,46 @@ const getImageUrl = computed(() => {
 })
 
 watch(difficult, (newDifficult) => {
-        if (newDifficult === 2) {
-            getProgressBarWidth.value = 10
-        } else if (newDifficult === 4){
-            getProgressBarWidth.value = 15  
-        } else if (newDifficult === 6){
-            getProgressBarWidth.value = 20  
-        }
 
-    })
+if (newDifficult === 2) {
+return getProgressBarWidth.value = {shift: 10};
+} 
+
+if (newDifficult === 4) {
+return getProgressBarWidth.value = {shift: 15};
+} 
+
+if(newDifficult !== 4 && newDifficult !== 2) {
+return getProgressBarWidth.value = {shift: 20};
+}
+})
 
 </script>
 
 <template>
     <div class="container">
-        <person-image :image-url="getImageUrl" :key="difficult.value" />  
+        <transition name="slide-fade">
+            <person-image :image-url="getImageUrl" :key="difficult.value" />  
+        </transition> 
         <person-progress-bar :progress-bar-width="getProgressBarWidth" />
         {{ getProgressBarWidth }}
     </div>
 </template>
 
 <style scoped>
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
 
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 1;
+}
 </style>
 
 // const DIFFICULT = { // easy: 1, // medium: 2, // hard: 3, // }; // const
