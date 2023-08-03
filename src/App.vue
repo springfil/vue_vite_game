@@ -2,7 +2,7 @@
 import { provide, ref } from "vue";
 import GameBoard from "@/components/GameBoard.vue";
 import GamePerson from "@/components/GamePerson.vue";
-import BackgroundCanvas from '@/components/BackgroundCanvas.vue'
+import GameJournal from '@/components/GameJournal.vue'
 const data = ref(2);
 
 provide("data", data);
@@ -25,6 +25,7 @@ provide("data", data);
             <game-person />
         </div>
     </div>
+    <game-journal />
 </template>
 
 <style scoped>

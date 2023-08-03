@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject, watch, ref,reactive } from 'vue'
+import { computed, inject, watch, ref} from 'vue'
 import PersonImage from './PersonImage.vue'
 import PersonProgressBar from './PersonProgressBar.vue'
 import nezuko_small from '@/assets/nezuko_small.jpg'
