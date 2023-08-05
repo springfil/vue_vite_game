@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject, watch, ref} from 'vue'
+import { computed, inject, watch, ref, onMounted } from 'vue'
 import PersonImage from './PersonImage.vue'
 import PersonProgressBar from './PersonProgressBar.vue'
 import nezuko_small from '@/assets/nezuko_small.jpg'
@@ -22,21 +22,35 @@ const getImageUrl = computed(() => {
     }
 })
 
-watch(difficult, (newDifficult) => {
-
-if (newDifficult === 2) {
-return getProgressBarWidth.value = {shift: 10};
-} 
-
-if (newDifficult === 4) {
-return getProgressBarWidth.value = {shift: 15};
-} 
-
-if(newDifficult !== 4 && newDifficult !== 2) {
-return getProgressBarWidth.value = {shift: 20};
-}
+onMounted(async () => {
+    await loadImage(nezuko_small);
+    await loadImage(nezuko_medium);
+    await loadImage(nezuko_high);
 })
 
+async function loadImage(url) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        console.log(img)
+        img.src = url;
+        img.onload = resolve;
+        img.onerror = reject;
+    });
+}
+
+watch(difficult, (newDifficult) => {
+    if (newDifficult === 2) {
+        return getProgressBarWidth.value = { shift: 10 };
+    }
+
+    if (newDifficult === 4) {
+        return getProgressBarWidth.value = { shift: 15 };
+    }
+
+    if (newDifficult !== 4 && newDifficult !== 2) {
+        return getProgressBarWidth.value = { shift: 20 };
+    }
+})
 </script>
 
 <template>
