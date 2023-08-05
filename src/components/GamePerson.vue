@@ -59,7 +59,6 @@ watch(difficult, (newDifficult) => {
             <person-image :image-url="getImageUrl" :key="difficult.value" />  
         </transition> 
         <person-progress-bar :progress-bar-width="getProgressBarWidth" />
-        {{ getProgressBarWidth }}
     </div>
 </template>
 

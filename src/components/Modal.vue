@@ -1,13 +1,11 @@
 <template>
     <div id="modal">
         <h2>Боевой журнал</h2>
-        <transition-group name="slide-fade" tag="div">
-            <ul>
-                <li v-for="entry in log" :key="entry.time" class="log-entry">
-                    {{ entry.attacker }} нанес {{ entry.damage }} урона в
-                    {{ entry.time }}
-                </li>
-            </ul>
+        <transition-group name="slide-fade" tag="ul">
+            <li v-for="entry in log" :key="entry.time" class="log-entry">
+                {{ entry.attacker }} нанес {{ entry.damage }} урона в
+                {{ entry.time }}
+            </li>
         </transition-group>
     </div>
 </template>

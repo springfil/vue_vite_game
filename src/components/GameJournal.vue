@@ -13,7 +13,7 @@ import { ref, inject, watch } from 'vue'
 
 const damageMultiplier = inject('data')
 const log = ref([])
-const modalVisible = ref(false)
+const modalVisible = ref(true)
 
 function toggleModal() {
     modalVisible.value = !modalVisible.value
