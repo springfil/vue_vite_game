@@ -1,7 +1,7 @@
 <script setup>
 import { ref, inject } from 'vue'
-import GameBoardLog from '@/components/GameBoardLog.vue'
-import BoardItem from '@/components/BoardItem.vue'
+import GameBoardLog from '@/components/GameBoard/GameBoardLog.vue'
+import BoardItem from '@/components/GameBoard/BoardItem.vue'
 import useGameInit from '@/composable/useGameInit'
 import useGameStart from '@/composable/useGameStart'
 import useGameProcess from '@/composable/useGameProcess'

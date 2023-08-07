@@ -52,7 +52,7 @@ const select = (id) => {
     width: 40px;
     height: 40px;
 
-    background: url("../assets/logo.png");
+    background: url("@/assets/logo.png");
     background-size: cover;
     background-position: center;
 

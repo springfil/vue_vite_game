@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import Modal from './Modal.vue'
+import Modal from '@/components/GameJournal/Modal.vue'
 import { ref, inject, watch } from 'vue'
 
 const damageMultiplier = inject('data')
