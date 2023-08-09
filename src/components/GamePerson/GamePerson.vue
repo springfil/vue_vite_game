@@ -23,10 +23,12 @@ const getImageUrl = computed(() => {
 })
 
 onMounted(async () => {
-    await loadImage(nezuko_small);
-    await loadImage(nezuko_medium);
-    await loadImage(nezuko_high);
-})
+  await Promise.all([
+    loadImage(nezuko_small),
+    loadImage(nezuko_medium),
+    loadImage(nezuko_high)
+  ]);
+});
 
 async function loadImage(url) {
     return new Promise((resolve, reject) => {

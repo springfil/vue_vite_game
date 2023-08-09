@@ -1,7 +1,7 @@
 <template>
     <div>
         <button @click="toggleModal()">
-            {{ modalVisible ? 'Закрыть' : 'Открыть модальное окно' }}
+            {{ modalVisible ? 'Закрыть' : 'Открыть' }}
         </button>
         <Modal v-if="modalVisible" :log="log" />
     </div>
