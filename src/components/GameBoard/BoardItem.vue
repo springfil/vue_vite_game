@@ -67,14 +67,14 @@ const select = (id) => {
 }
 
 .item.active {
-    background: url("https://pictures.pibig.info/uploads/posts/2023-04/1680522788_pictures-pibig-info-p-nezuko-risunki-vkontakte-26.jpg");
+    background: url("@/assets/board_nezuko.png");
     background-size: cover;
     background-position: center;
     transform: rotateX(720deg);
 }
 
 .item.error {
-    background: url("https://www.freepngimg.com/thumb/trollface/98161-picture-trollface-free-hd-image.png");
+    background: url("@/assets/board_troll.png");
     background-size: cover;
     background-position: center;
     transform: rotateX(720deg);

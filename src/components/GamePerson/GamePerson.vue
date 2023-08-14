@@ -1,10 +1,11 @@
 <script setup>
 import { computed, inject, watch, ref, onMounted } from 'vue'
-import PersonImage from '@/components/GamePerson/PersonImage.vue'
-import PersonProgressBar from '@/components/GamePerson/PersonProgressBar.vue'
-import nezuko_small from '@/assets/nezuko_small.jpg'
-import nezuko_medium from '@/assets/nezuko_medium.jpg'
-import nezuko_high from '@/assets/nezuko_high.jpg'
+import GamePersonImage from '@/components/GamePerson/GamePersonImage.vue'
+import GamePersonProgressBar from '@/components/GamePerson/GamePersonProgressBar.vue'
+import { loadImage } from '@/utils/loadImage.js'
+import small from '@/assets/GamePerson/nezuko_small.jpg'
+import medium from '@/assets/GamePerson/nezuko_medium.jpg'
+import high from '@/assets/GamePerson/nezuko_high.jpg'
 
 const difficult = inject('data')
 const getProgressBarWidth = ref({})
@@ -12,33 +13,23 @@ const getProgressBarWidth = ref({})
 const getImageUrl = computed(() => {
     switch (difficult.value) {
         case 2:
-            return nezuko_small
+            return small
         case 4:
-            return nezuko_medium
+            return medium
         case 6:
-            return nezuko_high
+            return high
         default:
-            return nezuko_high
+            return high
     }
 })
 
 onMounted(async () => {
   await Promise.all([
-    loadImage(nezuko_small),
-    loadImage(nezuko_medium),
-    loadImage(nezuko_high)
+    loadImage(small),
+    loadImage(medium),
+    loadImage(high)
   ]);
 });
-
-async function loadImage(url) {
-    return new Promise((resolve, reject) => {
-        const img = new Image();
-        console.log(img)
-        img.src = url;
-        img.onload = resolve;
-        img.onerror = reject;
-    });
-}
 
 watch(difficult, (newDifficult) => {
     if (newDifficult === 2) {
@@ -58,9 +49,9 @@ watch(difficult, (newDifficult) => {
 <template>
     <div class="container">
         <transition name="slide-fade">
-            <person-image :image-url="getImageUrl" :key="difficult.value" />  
+            <game-person-image :image-url="getImageUrl" :key="difficult.value" />  
         </transition> 
-        <person-progress-bar :progress-bar-width="getProgressBarWidth" />
+        <game-person-progress-bar :progress-bar-width="getProgressBarWidth" />
     </div>
 </template>
 
