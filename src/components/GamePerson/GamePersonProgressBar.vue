@@ -1,5 +1,7 @@
 <script setup>
-import { defineProps, watch, ref } from "vue";
+import { defineProps, watch, ref, inject } from "vue";
+
+const data2 = inject('data2')
 
 const props = defineProps(["progressBarWidth"]);
 let width = 240;
@@ -9,6 +11,8 @@ const shifted = ref(width);
 watch(() => props.progressBarWidth.shift, (newShift) => {
   width -= newShift;
   shifted.value = width;
+  data2.value = newShift;
+  console.log(newShift);
 });
 </script>
 

@@ -7,6 +7,9 @@ import GameJournal from '@/components/GameJournal/GameJournal.vue'
 
 const data = ref(2);
 provide("data", data);
+
+const data2 = ref(NaN);
+provide("data2", data2);
 </script>
 
 <template>

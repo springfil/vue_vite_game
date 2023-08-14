@@ -11,7 +11,8 @@
 import Modal from '@/components/GameJournal/Modal.vue'
 import { ref, inject, watch } from 'vue'
 
-const damageMultiplier = inject('data')
+const damageMultiplierPerson = inject('data')
+const damageMultiplierOpponent = inject('data2')
 const log = ref([])
 const modalVisible = ref(true)
 
@@ -20,10 +21,19 @@ function toggleModal() {
 }
 
 function attack() {
-    const damage = 5 * damageMultiplier.value
+    let damagePerson
+    if (damageMultiplierPerson.value === 2) {
+        damagePerson = 10
+    } else if (damageMultiplierPerson.value === 4) {
+        damagePerson = 15
+    } else {
+        damagePerson = 20
+    }
+
+    const damageOpponent = damageMultiplierOpponent.value
     const time = new Date().toLocaleTimeString()
-    log.value.push({ attacker: 'Nezuko', damage, time })
+    log.value.push({ attacker: 'Nezuko', damagePerson, damageOpponent, time })
 }
 
-watch(damageMultiplier, attack)
+watch(damageMultiplierPerson, attack)
 </script>
