@@ -2,6 +2,7 @@
 import { provide, ref } from "vue";
 import GameBoard from "@/components/GameBoard/GameBoard.vue";
 import GamePerson from "@/components/GamePerson/GamePerson.vue";
+import GameOpponent from "@/components/GameOpponent/GameOpponent.vue";
 import GameJournal from '@/components/GameJournal/GameJournal.vue'
 
 const data = ref(2);
@@ -22,7 +23,7 @@ provide("data", data);
             </div>
         </div>
         <div class="right-column">
-            <game-person />
+            <game-opponent />
         </div>
     </div>
     <game-journal />
