@@ -1,25 +1,15 @@
 <script setup>
-import { defineProps, computed } from "vue";
+import { defineProps, watch, ref } from "vue";
 
 const props = defineProps(["progressBarWidth"]);
 let width = 240;
 
-const shifted = computed(() => {
-    
-    if(props.progressBarWidth.shift === 10){
-    width = width - 10
-    return width
-    }
-    if(props.progressBarWidth.shift === 15){
-    width = width - 15
-    return width
-    }
-    if(props.progressBarWidth.shift === 20){
-    width = width - 20
-    return width
-    }
-    
-})
+const shifted = ref(width);
+
+watch(() => props.progressBarWidth.shift, (newShift) => {
+  width -= newShift;
+  shifted.value = width;
+});
 </script>
 
 <template>
@@ -45,9 +35,3 @@ const shifted = computed(() => {
 }
 </style>
 
-// const props = defineProps(["progressBarWidth"]);
-
-// watch(() => props.progressBarWidth, (newValue) => {
-//     console.log(newValue);
-// });
-// const width = ref("240"); 

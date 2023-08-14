@@ -1,14 +1,14 @@
 <script setup>
-import { computed, inject, watch, ref, onMounted } from 'vue'
+import { computed, inject, onMounted } from 'vue'
 import GamePersonImage from '@/components/GamePerson/GamePersonImage.vue'
 import GamePersonProgressBar from '@/components/GamePerson/GamePersonProgressBar.vue'
 import { loadImage } from '@/utils/loadImage.js'
+import { getRandom } from '@/utils/getRandom'
 import small from '@/assets/GamePerson/nezuko_small.jpg'
 import medium from '@/assets/GamePerson/nezuko_medium.jpg'
 import high from '@/assets/GamePerson/nezuko_high.jpg'
 
 const difficult = inject('data')
-const getProgressBarWidth = ref({})
 
 const getImageUrl = computed(() => {
     switch (difficult.value) {
@@ -31,19 +31,25 @@ onMounted(async () => {
   ]);
 });
 
-watch(difficult, (newDifficult) => {
-    if (newDifficult === 2) {
-        return getProgressBarWidth.value = { shift: 10 };
+const getProgressBarWidth = computed(() => {
+    let minShift;
+    let maxShift;
+    if (difficult.value === 2) {
+        minShift = 5;
+        maxShift = 10;
+    } else if (difficult.value === 4) {
+        minShift = 10;
+        maxShift = 15;
+    } else {
+        minShift = 15;
+        maxShift = 40;
     }
 
-    if (newDifficult === 4) {
-        return getProgressBarWidth.value = { shift: 15 };
-    }
+    const shift = getRandom(minShift, maxShift);
+    console.log(shift);
+    return { shift };
+});
 
-    if (newDifficult !== 4 && newDifficult !== 2) {
-        return getProgressBarWidth.value = { shift: 20 };
-    }
-})
 </script>
 
 <template>
