@@ -1,19 +1,22 @@
 <script setup>
-import { defineProps, watch, ref, inject } from "vue";
+import { defineProps, watch, ref, inject } from 'vue'
 
 const data2 = inject('data2')
 
-const props = defineProps(["progressBarWidth"]);
-let width = 240;
+const props = defineProps(['progressBarWidth'])
+let width = 180
 
-const shifted = ref(width);
+const shifted = ref(width)
 
-watch(() => props.progressBarWidth.shift, (newShift) => {
-  width -= newShift;
-  shifted.value = width;
-  data2.value = newShift;
-  console.log(newShift);
-});
+watch(
+    () => props.progressBarWidth.shift,
+    (newShift) => {
+        width -= newShift
+        shifted.value = width
+        data2.value = newShift
+        console.log(newShift)
+    },
+)
 </script>
 
 <template>
@@ -24,11 +27,11 @@ watch(() => props.progressBarWidth.shift, (newShift) => {
 
 <style scoped>
 .progress-bar-frame {
-    border: 5px solid black;
+    border: 2px solid black;
     border-radius: 15px;
-    height: 20px;
+    height: 15px;
     margin-top: 10px;
-    width: 240px;
+    width: 180px;
 }
 
 .progress-bar {
@@ -38,4 +41,3 @@ watch(() => props.progressBarWidth.shift, (newShift) => {
     transition: width 2s;
 }
 </style>
-

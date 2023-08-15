@@ -1,24 +1,22 @@
 <script setup>
-import { defineProps, computed } from "vue";
+import { defineProps, computed } from 'vue'
 
-const props = defineProps(["progressBarWidth"]);
-let width = 240;
+const props = defineProps(['progressBarWidth'])
+let width = 180
 
 const shifted = computed(() => {
-    
-    if(props.progressBarWidth.shift === 10){
-    width = width - 10
-    return width
+    if (props.progressBarWidth.shift === 10) {
+        width = width - 10
+        return width
     }
-    if(props.progressBarWidth.shift === 15){
-    width = width - 15
-    return width
+    if (props.progressBarWidth.shift === 15) {
+        width = width - 15
+        return width
     }
-    if(props.progressBarWidth.shift === 20){
-    width = width - 20
-    return width
+    if (props.progressBarWidth.shift === 20) {
+        width = width - 20
+        return width
     }
-    
 })
 </script>
 
@@ -30,11 +28,11 @@ const shifted = computed(() => {
 
 <style scoped>
 .progress-bar-frame {
-    border: 5px solid black;
+    border: 2px solid black;
     border-radius: 15px;
-    height: 20px;
+    height: 15px;
     margin-top: 10px;
-    width: 240px;
+    width: 180px;
 }
 
 .progress-bar {

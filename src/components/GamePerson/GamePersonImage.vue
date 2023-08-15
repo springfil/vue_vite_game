@@ -1,7 +1,7 @@
 <script setup>
-import { defineProps } from "vue";
+import { defineProps } from 'vue'
 
-defineProps(["imageUrl"]);
+defineProps(['imageUrl'])
 </script>
 
 <template>
@@ -12,8 +12,11 @@ defineProps(["imageUrl"]);
 
 <style scoped>
 .image-frame {
-    border: 5px solid black;
-    border-radius: 15px;
+    border: 2px solid black;
+    border-top: none;
+    border-bottom: none;
+    border-radius: 30px/90px;
+    padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,6 +25,11 @@ defineProps(["imageUrl"]);
 }
 .sizeimg {
     object-fit: cover;
+    border: 2px solid black;
+    border-top: none;
+    border-bottom: none;
+    border-radius: 30px/90px;
+    box-shadow: 0px 0px 14px 2px rgb(230, 50, 215);
     height: 100%;
     width: 100%;
 }
