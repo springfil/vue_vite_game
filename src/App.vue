@@ -4,6 +4,7 @@ import GameBoard from "@/components/GameBoard/GameBoard.vue";
 import GamePerson from "@/components/GamePerson/GamePerson.vue";
 import GameOpponent from "@/components/GameOpponent/GameOpponent.vue";
 import GameJournal from '@/components/GameJournal/GameJournal.vue'
+import PopupInit from "@/components/Popup/PopupInit.vue";
 
 const data = ref(2);
 provide("data", data);
@@ -29,6 +30,7 @@ provide("data2", data2);
             <game-opponent />
         </div>
     </div>
+    <popup-init />
     <game-journal />
 </template>
 
