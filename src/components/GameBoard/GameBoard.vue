@@ -65,10 +65,11 @@ const { selectField, isNext, isReset } = useGameProcess(
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
 }
 .board {
     width: 250px;
-    background: #eee;
+    background-color: rgba(255, 255, 255, 0.5);
     border: none;
     border-radius: 10px;
 }
