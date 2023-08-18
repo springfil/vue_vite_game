@@ -34,11 +34,11 @@ const confirm = () => {
 </script>
 
 <template>
-    <div v-if="isOpen" class="backdrop" @click="close">
-        <div class="popup" @click.stop>
+    <div v-if="isOpen" class="backdrop" @mousedown="close">
+        <div class="popup" @mousedown.stop>
             <h2>по поводу компонента:</h2>
             <hr />
-            <slot></slot>
+            <slot></slot>   
             <hr />
             <div class="footer">
                 <slot name="actions" :close="close" :confirm="confirm">
