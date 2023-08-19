@@ -1,38 +1,44 @@
 <template>
     <div>
-        <button @click="toggleModal()">
-            {{ modalVisible ? 'Закрыть' : 'Открыть' }}
+        <button @click="toggleJournal()">
+            {{ journalVisible ? 'Закрыть' : 'Открыть' }}
         </button>
-        <Modal v-if="modalVisible" :log="log" />
+        <Journal v-if="journalVisible" :log="log" />
     </div>
 </template>
 
 <script setup>
-import Modal from '@/components/GameJournal/Modal.vue'
-import { ref, inject, watch } from 'vue'
+import Journal from '@/components/GameJournal/Journal.vue'
+import { ref, inject, watch, computed } from 'vue'
 
 const damageMultiplierPerson = inject('data')
 const damageMultiplierOpponent = inject('data2')
 const log = ref([])
-const modalVisible = ref(true)
+const journalVisible = ref(true)
 
-function toggleModal() {
-    modalVisible.value = !modalVisible.value
+function toggleJournal() {
+    journalVisible.value = !journalVisible.value
 }
 
-function attack() {
-    let damagePerson
+const damagePerson = computed(() => {
     if (damageMultiplierPerson.value === 2) {
-        damagePerson = 10
+        return 10
     } else if (damageMultiplierPerson.value === 4) {
-        damagePerson = 15
+        return 15
     } else {
-        damagePerson = 20
+        return 20
     }
+})
 
+function attack() {
     const damageOpponent = damageMultiplierOpponent.value
     const time = new Date().toLocaleTimeString()
-    log.value.push({ attacker: 'Nezuko', damagePerson, damageOpponent, time })
+    log.value.unshift({
+        attacker: 'Nezuko',
+        damagePerson: damagePerson.value,
+        damageOpponent,
+        time,
+    })
 }
 
 watch(damageMultiplierPerson, attack)

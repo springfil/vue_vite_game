@@ -1,9 +1,11 @@
 <template>
-    <div id="modal">
+    <div id="journal">
         <h2>Боевой журнал</h2>
-        <transition-group name="slide-fade" tag="ul" class="log-container" >
+        <transition-group name="slide-fade" tag="div" class="log-container">
             <li v-for="entry in log" :key="entry.time" class="log-entry">
-                {{ entry.attacker }} нанес {{ entry.damagePerson }} урона, получив от противника {{ entry.damageOpponent }} урона - {{ entry.time }}
+                {{ entry.attacker }} нанес {{ entry.damagePerson }} урона,
+                получив от противника {{ entry.damageOpponent }} урона -
+                {{ entry.time }}
             </li>
         </transition-group>
     </div>
@@ -25,10 +27,9 @@ const props = defineProps(['log'])
     align-items: center;
 }
 .log-container {
-  max-height: 100px;
-  overflow-y: scroll;
+    max-height: 100px;
+    overflow-y: auto;
 }
-
 
 .slide-fade-enter-active {
     transition: all 0.3s ease-out;
