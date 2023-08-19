@@ -27,21 +27,28 @@ onMounted(async () => {
     await Promise.all([loadImage(small), loadImage(medium), loadImage(high)])
 })
 
-const getProgressBarWidth = computed(() => {
-    let minShift
-    let maxShift
+const minShift = computed(() => {
     if (difficult.value === 2) {
-        minShift = 5
-        maxShift = 10
+        return 5
     } else if (difficult.value === 4) {
-        minShift = 10
-        maxShift = 15
+        return 10
     } else {
-        minShift = 15
-        maxShift = 40
+        return 15
     }
+})
 
-    const shift = getRandom(minShift, maxShift)
+const maxShift = computed(() => {
+    if (difficult.value === 2) {
+        return 10
+    } else if (difficult.value === 4) {
+        return 15
+    } else {
+        return 40
+    }
+})
+
+const getProgressBarWidth = computed(() => {
+    const shift = getRandom(minShift.value, maxShift.value)
     console.log(shift)
     return { shift }
 })

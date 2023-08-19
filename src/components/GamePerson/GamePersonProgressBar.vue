@@ -4,15 +4,12 @@ import { defineProps, watch, ref, inject } from 'vue'
 const data2 = inject('data2')
 
 const props = defineProps(['progressBarWidth'])
-let width = 180
-
-const shifted = ref(width)
+const shifted = ref(180)
 
 watch(
     () => props.progressBarWidth.shift,
     (newShift) => {
-        width -= newShift
-        shifted.value = width
+        shifted.value -= newShift
         data2.value = newShift
         console.log(newShift)
     },
