@@ -38,7 +38,7 @@ const confirm = () => {
         <div class="popup" @mousedown.stop>
             <h2>по поводу компонента:</h2>
             <hr />
-            <slot></slot>   
+            <slot></slot>
             <hr />
             <div class="footer">
                 <slot name="actions" :close="close" :confirm="confirm">
@@ -57,7 +57,7 @@ const confirm = () => {
     left: 50%;
     transform: translateX(-50%);
     position: fixed;
-    z-index: 101;
+    /* z-index: 101; */
     background-color: white;
     border-radius: 10px;
 }
