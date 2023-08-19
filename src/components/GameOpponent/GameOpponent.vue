@@ -44,27 +44,28 @@ watch(difficult, (newDifficult) => {
 
 <template>
     <div class="container">
-        <transition name="slide-fade">
+        <transition name="bounce">
             <game-opponent-image
                 :image-url="getImageUrl"
-                :key="difficult.value" />
+                :key="difficult" />
         </transition>
         <game-opponent-progress-bar :progress-bar-width="getProgressBarWidth" />
     </div>
 </template>
 
 <style scoped>
-.slide-fade-enter-active {
-    transition: all 0.3s ease-out;
+.bounce-enter-active {
+    animation: bounce-in 2s;
 }
-
-.slide-fade-leave-active {
-    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+.bounce-leave-active {
+    animation: bounce-in 0.1s reverse;
 }
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-    transform: translateX(20px);
-    opacity: 1;
+@keyframes bounce-in {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 </style>

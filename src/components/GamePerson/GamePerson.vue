@@ -24,57 +24,51 @@ const getImageUrl = computed(() => {
 })
 
 onMounted(async () => {
-  await Promise.all([
-    loadImage(small),
-    loadImage(medium),
-    loadImage(high)
-  ]);
-});
+    await Promise.all([loadImage(small), loadImage(medium), loadImage(high)])
+})
 
 const getProgressBarWidth = computed(() => {
-    let minShift;
-    let maxShift;
+    let minShift
+    let maxShift
     if (difficult.value === 2) {
-        minShift = 5;
-        maxShift = 10;
+        minShift = 5
+        maxShift = 10
     } else if (difficult.value === 4) {
-        minShift = 10;
-        maxShift = 15;
+        minShift = 10
+        maxShift = 15
     } else {
-        minShift = 15;
-        maxShift = 40;
+        minShift = 15
+        maxShift = 40
     }
 
-    const shift = getRandom(minShift, maxShift);
-    console.log(shift);
-    return { shift };
-});
-
+    const shift = getRandom(minShift, maxShift)
+    console.log(shift)
+    return { shift }
+})
 </script>
 
 <template>
     <div class="container">
-        <transition name="slide-fade">
-            <game-person-image :image-url="getImageUrl" :key="difficult.value" />  
-        </transition> 
+        <transition name="bounce">
+            <game-person-image :image-url="getImageUrl" :key="difficult" />
+        </transition>
         <game-person-progress-bar :progress-bar-width="getProgressBarWidth" />
     </div>
 </template>
 
 <style scoped>
-.slide-fade-enter-active {
-  transition: all 0.3s ease-out;
+.bounce-enter-active {
+    animation: bounce-in 2s;
 }
-
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+.bounce-leave-active {
+    animation: bounce-in 0.1s reverse;
 }
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateX(20px);
-  opacity: 1;
+@keyframes bounce-in {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 </style>
-
-
