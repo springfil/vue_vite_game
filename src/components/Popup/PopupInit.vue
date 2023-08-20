@@ -22,10 +22,10 @@ const popupConfirmed = () => {
                 :is-open="isPopupOpen"
                 @ok="popupConfirmed"
                 @close="isPopupOpen = false">
-                Кто-то победил, думаю как реализовать <br />
-                Вроде еще можно тянуть сюда компоненты <br />
-                Читал еще про телепорты <br />
-                <game-person />
+              <template #default>
+                  <game-person />
+
+              </template>
             </popup-slots>
         </transition>
     </teleport>
