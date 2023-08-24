@@ -16,16 +16,13 @@ const popupConfirmed = () => {
 
 <template>
     <button @click="openPopup">Открыть popup</button>
-    <teleport to="#modal">
+    <teleport to="body">
         <transition name="modal">
             <popup-slots
                 :is-open="isPopupOpen"
                 @ok="popupConfirmed"
                 @close="isPopupOpen = false">
-             
-                  <game-person />
-
-             
+                <game-person />
             </popup-slots>
         </transition>
     </teleport>

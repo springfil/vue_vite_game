@@ -36,7 +36,7 @@ const confirm = () => {
 <template>
     <div v-if="isOpen" class="backdrop" @mousedown="close">
         <div class="popup" @mousedown.stop>
-            <h2>по поводу компонента:</h2>
+            <h2>Победил:</h2>
             <hr />
             <slot></slot>
             <hr />
@@ -52,14 +52,14 @@ const confirm = () => {
 
 <style scoped>
 .popup {
-    top: 30%;
+    top: 10%;
     padding: 20px;
     left: 50%;
     transform: translateX(-50%);
     position: fixed;
-    /* z-index: 101; */
     background-color: white;
     border-radius: 10px;
+    text-align: center;
 }
 
 .popup h1 {
