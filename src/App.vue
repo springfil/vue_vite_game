@@ -16,23 +16,23 @@ provide("data2", data2);
 <template>
     <div class="wrapper">
         <div class="container">
-            <div class="left-column">
+            <div class="game-person">
                 <game-person />
             </div>
-            <div class="center-column">
+            <div class="game-board">
                 <div class="app">
                     <img class="logo" src="./assets/logo.png" alt="Vue logo" />
                     <h2 class="h2">Коробка удачи</h2>
                     <game-board />
                 </div>
             </div>
-            <div class="right-column">
+            <div class="game-opponent">
                 <game-opponent />
             </div>
         </div>
-        <popup-init />
-        <game-journal />
     </div>
+<popup-init />
+<game-journal />
 </template>
 
 <style scoped>
@@ -47,9 +47,10 @@ provide("data2", data2);
     display: flex;
     flex-direction: row;
     align-items: center; 
+    justify-content: space-between;
 }
 
-.left-column,
+/* .left-column,
 .right-column {
     flex: 1;
   
@@ -60,7 +61,7 @@ provide("data2", data2);
     display: flex;
     justify-content: center;
    
-}
+} */
 
 .app {
     font-family: Helvetica, sans-serif;
