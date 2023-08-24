@@ -33,6 +33,13 @@ const { selectField, isNext, isReset } = useGameProcess(
     difficult,
     start,
 )
+
+// const reset = () => {
+//     // init();
+//     // difficult.value = 2
+//     // updateData()
+//     location.reload()
+// }
 </script>
 
 <template>
@@ -55,6 +62,10 @@ const { selectField, isNext, isReset } = useGameProcess(
             <button class="btn" @click="start" :disabled="!canStartGame">
                 Старт
             </button>
+            
+            <!-- <button class="btn" @click="reset">
+                Перезапуск
+            </button> -->
         </div>
     </div>
 </template>

@@ -16,7 +16,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <div>
+    <div class="board-log">
         <p class="difficult">
             Множитель атаки <strong>X*{{ difficult }}</strong>
         </p>
@@ -28,6 +28,10 @@ const props = defineProps({
 </template>
 
 <style scoped>
+.board-log{
+    height: 72px;
+}
+
 .slide-up-enter-active,
 .slide-up-leave-active {
     transition: all 0.5s ease-out;

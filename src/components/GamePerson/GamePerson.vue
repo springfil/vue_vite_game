@@ -63,9 +63,9 @@ const getProgressBarWidth = computed(() => {
 
 <template>
     <div class="container-person">
-        <transition name="bounce">
+        <!-- <transition name="bounce"> -->
             <game-person-image :image-url="getImageUrl" :key="difficult" />
-        </transition>
+        <!-- </transition> -->
         <game-person-progress-bar :progress-bar-width="getProgressBarWidth" />
     </div>
 </template>
@@ -79,15 +79,15 @@ const getProgressBarWidth = computed(() => {
 .bounce-enter-active {
     animation: bounce-in 2s;
 }
-.bounce-leave-active {
-    animation: bounce-in 0.1s reverse;
-}
 @keyframes bounce-in {
     0% {
-        transform: scale(0);
+        transform: scale(0.5);
     }
     100% {
         transform: scale(1);
     }
 }
+/* .bounce-leave-active {
+    animation: bounce-in 2s reverse;
+} */
 </style>

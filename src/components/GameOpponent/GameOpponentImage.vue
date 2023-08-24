@@ -5,13 +5,13 @@ defineProps(['imageUrl'])
 </script>
 
 <template>
-    <div class="image-frame">
+    <div class="image-frame-1">
         <img class="sizeimg" :src="imageUrl" alt="" />
     </div>
 </template>
 
 <style scoped>
-.image-frame {
+.image-frame-1 {
     border: 2px solid black;
     /* box-shadow: 0 5px 10px 1px rgba(11, 24, 206, 0.952); */
     /* border-radius: 15px; */
@@ -36,4 +36,20 @@ defineProps(['imageUrl'])
     height: 100%;
     width: 100%;
 }
+
+.image-frame-1 img {
+  animation-name: image-fade-1;
+  animation-duration: 5s;
+  animation-fill-mode: forwards; 
+}
+
+@keyframes image-fade-1 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 </style>

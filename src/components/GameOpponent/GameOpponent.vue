@@ -44,11 +44,11 @@ watch(difficult, (newDifficult) => {
 
 <template>
     <div class="container-opponent">
-        <transition name="bounce">
+        <!-- <transition name="bounce"> -->
             <game-opponent-image
                 :image-url="getImageUrl"
-                :key="difficult" />
-        </transition>
+                :key="difficult.value" />
+        <!-- </transition> -->
         <game-opponent-progress-bar :progress-bar-width="getProgressBarWidth" />
     </div>
 </template>
@@ -63,9 +63,9 @@ watch(difficult, (newDifficult) => {
 .bounce-enter-active {
     animation: bounce-in 2s;
 }
-.bounce-leave-active {
+/* .bounce-leave-active {
     animation: bounce-in 0.1s reverse;
-}
+} */
 @keyframes bounce-in {
     0% {
         transform: scale(0);
