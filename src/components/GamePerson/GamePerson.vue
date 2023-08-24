@@ -76,7 +76,7 @@ const getProgressBarWidth = computed(() => {
     flex-direction: column;
     align-items: center;
 }
-.bounce-enter-active {
+/* .bounce-enter-active {
     animation: bounce-in 2s;
 }
 @keyframes bounce-in {
@@ -86,7 +86,7 @@ const getProgressBarWidth = computed(() => {
     100% {
         transform: scale(1);
     }
-}
+} */
 /* .bounce-leave-active {
     animation: bounce-in 2s reverse;
 } */

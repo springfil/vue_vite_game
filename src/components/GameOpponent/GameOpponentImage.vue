@@ -1,17 +1,17 @@
 <script setup>
 import { defineProps } from 'vue'
 
-defineProps(['imageUrl'])
+defineProps(['imageUrl1'])
 </script>
 
 <template>
-    <div class="image-frame-1">
-        <img class="sizeimg" :src="imageUrl" alt="" />
+    <div class="image-frame-opponent">
+        <img class="sizeimg-1" :src="imageUrl1" alt="" />
     </div>
 </template>
 
 <style scoped>
-.image-frame-1 {
+.image-frame-opponent {
     border: 2px solid black;
     /* box-shadow: 0 5px 10px 1px rgba(11, 24, 206, 0.952); */
     /* border-radius: 15px; */
@@ -25,7 +25,7 @@ defineProps(['imageUrl'])
     height: 320px;
     width: 240px;
 }
-.sizeimg {
+.sizeimg-1 {
     object-fit: cover;
     /* border-radius: 15px; */
     border: 2px solid black;
@@ -37,13 +37,13 @@ defineProps(['imageUrl'])
     width: 100%;
 }
 
-.image-frame-1 img {
-  animation-name: image-fade-1;
+.image-frame-opponent img {
+  animation-name: aboba;
   animation-duration: 5s;
   animation-fill-mode: forwards; 
 }
 
-@keyframes image-fade-1 {
+@keyframes aboba {
   0% {
     opacity: 0;
   }

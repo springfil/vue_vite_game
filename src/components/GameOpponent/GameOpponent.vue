@@ -24,7 +24,7 @@ const getImageUrl = computed(() => {
 })
 
 onMounted(async () => {
-    await Promise.all([loadImage(small), loadImage(medium), loadImage(high)])
+    await Promise.all([loadImage(small1), loadImage(medium1), loadImage(high)])
 })
 
 watch(difficult, (newDifficult) => {
@@ -46,7 +46,7 @@ watch(difficult, (newDifficult) => {
     <div class="container-opponent">
         <!-- <transition name="bounce"> -->
             <game-opponent-image
-                :image-url="getImageUrl"
+                :image-url1="getImageUrl"
                 :key="difficult.value" />
         <!-- </transition> -->
         <game-opponent-progress-bar :progress-bar-width="getProgressBarWidth" />
@@ -66,12 +66,12 @@ watch(difficult, (newDifficult) => {
 /* .bounce-leave-active {
     animation: bounce-in 0.1s reverse;
 } */
-@keyframes bounce-in {
+/* @keyframes bounce-in {
     0% {
         transform: scale(0);
     }
     100% {
         transform: scale(1);
     }
-}
+} */
 </style>
