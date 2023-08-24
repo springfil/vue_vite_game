@@ -43,7 +43,7 @@ watch(difficult, (newDifficult) => {
 </script>
 
 <template>
-    <div class="container">
+    <div class="container-opponent">
         <transition name="bounce">
             <game-opponent-image
                 :image-url="getImageUrl"
@@ -54,6 +54,12 @@ watch(difficult, (newDifficult) => {
 </template>
 
 <style scoped>
+.container-opponent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .bounce-enter-active {
     animation: bounce-in 2s;
 }

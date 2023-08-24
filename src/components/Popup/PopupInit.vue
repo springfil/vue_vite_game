@@ -22,10 +22,10 @@ const popupConfirmed = () => {
                 :is-open="isPopupOpen"
                 @ok="popupConfirmed"
                 @close="isPopupOpen = false">
-              <template #default>
+             
                   <game-person />
 
-              </template>
+             
             </popup-slots>
         </transition>
     </teleport>

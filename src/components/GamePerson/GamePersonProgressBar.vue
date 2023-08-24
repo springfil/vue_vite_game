@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, watch, ref, inject } from 'vue'
+import { defineProps, watch, ref, inject, computed } from 'vue'
 
 const data2 = inject('data2')
 
@@ -12,9 +12,45 @@ watch(
         shifted.value -= newShift
         data2.value = newShift
         console.log(newShift)
+    }, 
+    //{immediate: true}
+)
+
+
+ </script>
+
+<!-- <script setup>
+import { defineProps, computed, inject, watch} from 'vue'
+
+const data2 = inject('data2')
+
+const props = defineProps(['progressBarWidth'])
+let width = 180
+const shifted = computed(() => width - props.progressBarWidth.shift)
+
+watch(
+   
+    () => props.progressBarWidth.shift,
+    (newShift) => {
+        debugger
+        data2.value = newShift    
     },
 )
-</script>
+</script>   -->
+
+<!-- <script setup>
+import { watchEffect, defineProps, inject, ref } from 'vue'
+
+const data2 = inject('data2')
+
+const props = defineProps(['progressBarWidth'])
+const shifted = ref(180)
+
+watchEffect(() => {
+    shifted.value -= props.progressBarWidth.shift
+    data2.value = props.progressBarWidth.shift
+})
+</script> -->
 
 <template>
     <div class="progress-bar-frame">

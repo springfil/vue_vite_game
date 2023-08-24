@@ -14,44 +14,52 @@ provide("data2", data2);
 </script>
 
 <template>
-    
-    <div class="container">
-        <div class="left-column">
-            <game-person />
-        </div>
-        <div class="center-column">
-            <div class="app">
-                <img class="logo" src="./assets/logo.png" alt="Vue logo" />
-                <h2 class="h2">Коробка удачи</h2>
-                <game-board />
+    <div class="wrapper">
+        <div class="container">
+            <div class="left-column">
+                <game-person />
+            </div>
+            <div class="center-column">
+                <div class="app">
+                    <img class="logo" src="./assets/logo.png" alt="Vue logo" />
+                    <h2 class="h2">Коробка удачи</h2>
+                    <game-board />
+                </div>
+            </div>
+            <div class="right-column">
+                <game-opponent />
             </div>
         </div>
-        <div class="right-column">
-            <game-opponent />
-        </div>
+        <popup-init />
+        <game-journal />
     </div>
-    <popup-init />
-    <game-journal />
 </template>
 
 <style scoped>
+
+.wrapper{
+    max-width: 1000px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0 auto
+}
 .container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-   
+    flex-direction: row;
+    align-items: center; 
 }
 
 .left-column,
 .right-column {
     flex: 1;
+  
 }
 
 .center-column {
     flex: 2;
     display: flex;
     justify-content: center;
-    align-items: center;
+   
 }
 
 .app {

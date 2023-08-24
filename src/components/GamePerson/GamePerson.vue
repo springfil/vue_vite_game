@@ -29,22 +29,29 @@ onMounted(async () => {
 
 const minShift = computed(() => {
     if (difficult.value === 2) {
+        console.log("min2")
         return 5
     } else if (difficult.value === 4) {
+        console.log("min4")
         return 10
     } else {
+        console.log("minzopa")
         return 15
     }
 })
 
 const maxShift = computed(() => {
     if (difficult.value === 2) {
+        console.log("max4")
         return 10
     } else if (difficult.value === 4) {
+        console.log("max4")
         return 15
     } else {
+        console.log("maxzop")
         return 40
     }
+    
 })
 
 const getProgressBarWidth = computed(() => {
@@ -55,7 +62,7 @@ const getProgressBarWidth = computed(() => {
 </script>
 
 <template>
-    <div class="container">
+    <div class="container-person">
         <transition name="bounce">
             <game-person-image :image-url="getImageUrl" :key="difficult" />
         </transition>
@@ -64,6 +71,11 @@ const getProgressBarWidth = computed(() => {
 </template>
 
 <style scoped>
+.container-person{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .bounce-enter-active {
     animation: bounce-in 2s;
 }
