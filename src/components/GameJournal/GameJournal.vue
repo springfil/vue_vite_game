@@ -1,9 +1,6 @@
 <template>
     <div>
-        <button @click="toggleJournal()">
-            {{ journalVisible ? 'Закрыть' : 'Открыть' }}
-        </button>
-        <Journal v-if="journalVisible" :log="log" />
+        <Journal :log="log" />
     </div>
 </template>
 
@@ -14,11 +11,7 @@ import { ref, inject, watch, computed } from 'vue'
 const damageMultiplierPerson = inject('data')
 const damageMultiplierOpponent = inject('data2')
 const log = ref([])
-const journalVisible = ref(true)
 
-function toggleJournal() {
-    journalVisible.value = !journalVisible.value
-}
 
 const damagePerson = computed(() => {
     if (damageMultiplierPerson.value === 2) {
