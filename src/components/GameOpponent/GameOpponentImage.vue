@@ -13,8 +13,6 @@ defineProps(['imageUrl1'])
 <style scoped>
 .image-frame-opponent {
     border: 2px solid black;
-    /* box-shadow: 0 5px 10px 1px rgba(11, 24, 206, 0.952); */
-    /* border-radius: 15px; */
     border-top: none;
     border-bottom: none;
     border-radius: 30px/90px;
@@ -27,7 +25,6 @@ defineProps(['imageUrl1'])
 }
 .sizeimg-1 {
     object-fit: cover;
-    /* border-radius: 15px; */
     border: 2px solid black;
     border-top: none;
     border-bottom: none;
@@ -38,16 +35,16 @@ defineProps(['imageUrl1'])
 }
 
 .image-frame-opponent img {
-  animation-name: aboba;
-  animation-duration: 5s;
+  animation-name: image-fade;
+  animation-duration: 2s;
   animation-fill-mode: forwards; 
 }
 
-@keyframes aboba {
+@keyframes image-fade {
   0% {
     opacity: 0;
   }
-  100% {
+  50% {
     opacity: 1;
   }
 }

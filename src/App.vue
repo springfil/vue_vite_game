@@ -1,16 +1,16 @@
 <script setup>
-import { provide, ref } from "vue";
-import GameBoard from "@/components/GameBoard/GameBoard.vue";
-import GamePerson from "@/components/GamePerson/GamePerson.vue";
-import GameOpponent from "@/components/GameOpponent/GameOpponent.vue";
+import { provide, ref } from 'vue'
+import GameBoard from '@/components/GameBoard/GameBoard.vue'
+import GamePerson from '@/components/GamePerson/GamePerson.vue'
+import GameOpponent from '@/components/GameOpponent/GameOpponent.vue'
 import GameJournal from '@/components/GameJournal/GameJournal.vue'
-import PopupInit from "@/components/Popup/PopupInit.vue";
+import PopupInit from '@/components/Popup/PopupInit.vue'
 
-const data = ref(2);
-provide("data", data);
+const data = ref(2)
+provide('data', data)
 
-const data2 = ref(NaN);
-provide("data2", data2);
+const data2 = ref(1)
+provide('data2', data2)
 </script>
 
 <template>
@@ -30,50 +30,35 @@ provide("data2", data2);
                 <game-opponent />
             </div>
         </div>
+        <game-journal />
     </div>
-<popup-init />
-<game-journal />
+    <popup-init />
 </template>
 
 <style scoped>
-
-.wrapper{
+.wrapper {
     max-width: 1000px;
     padding-left: 15px;
     padding-right: 15px;
-    margin: 0 auto
+    margin: 0 auto;
 }
 .container {
     display: flex;
     flex-direction: row;
-    align-items: center; 
+    align-items: center;
     justify-content: space-between;
 }
-
-/* .left-column,
-.right-column {
-    flex: 1;
-  
-}
-
-.center-column {
-    flex: 2;
-    display: flex;
-    justify-content: center;
-   
-} */
 
 .app {
     font-family: Helvetica, sans-serif;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 5px;
 }
 
 .logo {
     width: 70px;
     animation: floatingAnimation 1.5s infinite ease-in-out alternate;
 }
-
 
 @keyframes floatingAnimation {
     from {

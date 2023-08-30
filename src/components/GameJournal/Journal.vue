@@ -38,7 +38,7 @@ const props = defineProps(['log'])
 }
 .log-container {
     display: inline-block;
-    max-height: 100px;
+    max-height: 74px;
     overflow-y: auto;
     overflow-x: hidden;
 
