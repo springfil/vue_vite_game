@@ -11,6 +11,9 @@ provide('data', data)
 
 const data2 = ref(1)
 provide('data2', data2)
+
+const isInitialWidth = ref(true)
+provide("isInitialWidth", isInitialWidth)
 </script>
 
 <template>

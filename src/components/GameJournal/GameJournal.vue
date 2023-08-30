@@ -12,14 +12,23 @@ const damageMultiplierPerson = inject('data')
 const damageMultiplierOpponent = inject('data2')
 const log = ref([])
 
-
 const damagePerson = computed(() => {
     if (damageMultiplierPerson.value === 2) {
         return 10
     } else if (damageMultiplierPerson.value === 4) {
         return 15
-    } else {
+    } else if (damageMultiplierPerson.value === 6) {
         return 20
+    } else if (damageMultiplierPerson.value === 8) {
+        return 25
+    } else if (damageMultiplierPerson.value === 10) {
+        return 30
+    } else if (damageMultiplierPerson.value === 12) {
+        return 35
+    } else if (damageMultiplierPerson.value === 14) {
+        return 40
+    } else if (damageMultiplierPerson.value === 16) {
+        return 45
     }
 })
 

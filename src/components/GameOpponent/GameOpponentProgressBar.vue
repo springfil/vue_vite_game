@@ -1,35 +1,73 @@
 <script setup>
-import { defineProps, computed } from 'vue'
+import { defineProps, computed, inject } from 'vue'
 
 const props = defineProps(['progressBarWidth'])
+const isInitialWidth = inject('isInitialWidth')
+
 let width = 180
 
 const shifted = computed(() => {
-    if (props.progressBarWidth.shift === 10) {
+    // if (props.progressBarWidth.shift === 10) {
+    //     width = width - 10
+    //     return width
+    // }else if (props.progressBarWidth.shift === 15) {
+    //     width = width - 15
+    //     return width
+    // } else if (props.progressBarWidth.shift === 20) {
+    //     width = width - 20
+    //     return width
+    // }else if (props.progressBarWidth.shift === 25) {
+    //     width = width - 25
+    //     return width
+    // }else if (props.progressBarWidth.shift === 30) {
+    //     width = width - 30
+    //     return width
+    // }else if (props.progressBarWidth.shift === 35) {
+    //     width = width - 35
+    //     return width
+    // }else if (props.progressBarWidth.shift === 40) {
+    //     width = width - 40
+    //     return width
+    // }else if (props.progressBarWidth.shift === 45) {
+    //     width = width - 45
+    //     return width
+    // }  
+    if (props.progressBarWidth.shift === 10 && isInitialWidth.value) {
         width = width - 10
         return width
-    }else if (props.progressBarWidth.shift === 15) {
+    }
+    if (props.progressBarWidth.shift === 15 && isInitialWidth.value) {
         width = width - 15
         return width
-    } else if (props.progressBarWidth.shift === 20) {
+    } 
+     if (props.progressBarWidth.shift === 20 && isInitialWidth.value) {
         width = width - 20
         return width
-    }else if (props.progressBarWidth.shift === 25) {
+    }
+     if (props.progressBarWidth.shift === 25 && isInitialWidth.value) {
         width = width - 25
         return width
-    }else if (props.progressBarWidth.shift === 30) {
+    }
+     if (props.progressBarWidth.shift === 30 && isInitialWidth.value) {
         width = width - 30
         return width
-    }else if (props.progressBarWidth.shift === 35) {
+    }
+    if (props.progressBarWidth.shift === 35 && isInitialWidth.value) {
         width = width - 35
         return width
-    }else if (props.progressBarWidth.shift === 40) {
+    }
+     if (props.progressBarWidth.shift === 40 && isInitialWidth.value) {
         width = width - 40
         return width
-    }else if (props.progressBarWidth.shift === 45) {
+    }
+     if (props.progressBarWidth.shift === 45 && isInitialWidth.value) {
         width = width - 45
         return width
     }
+     if(!isInitialWidth.value){
+        width = 180
+        return width
+     }
 })
 </script>
 

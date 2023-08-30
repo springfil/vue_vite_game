@@ -7,7 +7,9 @@ import useGameStart from '@/composable/useGameStart'
 import useGameProcess from '@/composable/useGameProcess'
 import { GAME_STATUS } from '@/constants/GAME_STATUS'
 
+
 const data = inject('data')
+const isInitialWidth = inject('isInitialWidth')
 
 const updateData = () => {
     data.value = difficult.value
@@ -34,12 +36,13 @@ const { selectField, isNext, isReset } = useGameProcess(
     start,
 )
 
-// const reset = () => {
-//     // init();
-//     // difficult.value = 2
-//     // updateData()
-//     location.reload()
-// }
+const reset = () => {
+    init();
+    difficult.value = 2
+    updateData()
+    isInitialWidth.value = false
+    console.log(isInitialWidth.value)
+}
 </script>
 
 <template>
@@ -57,15 +60,17 @@ const { selectField, isNext, isReset } = useGameProcess(
             <game-board-log
                 :difficult="difficult"
                 :isNext="isNext"
-                :isReset="isReset"></game-board-log>
+                :isReset="isReset"/>
 
-            <button class="btn" @click="start" :disabled="!canStartGame">
-                Старт
-            </button>
-            
-            <!-- <button class="btn" @click="reset">
-                Перезапуск
-            </button> -->
+            <div class="btn-panel">
+                <button class="btn" @click="start" :disabled="!canStartGame">
+                    Старт
+                </button>
+                
+                <button class="btn reset" @click="reset">
+                    Сброс
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -86,8 +91,8 @@ const { selectField, isNext, isReset } = useGameProcess(
 }
 
 .btn {
-    background: #2d3741;
-    color: white;
+    background: rgba(255, 255, 255, 0.5);
+    color: black;
     border: none;
     border-radius: 10px;
     padding: 10px 30px;
@@ -96,8 +101,12 @@ const { selectField, isNext, isReset } = useGameProcess(
     outline: none;
 }
 
+.btn + .reset:hover{
+    background: rgba(11, 24, 206, 0.4);
+}
+
 .btn:hover {
-    background: #c0392b;
+    background: rgb(230, 50, 215, 0.5);
 }
 
 .button-container {
