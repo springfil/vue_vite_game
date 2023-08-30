@@ -1,12 +1,12 @@
 <script setup>
 import { defineProps } from 'vue'
 
-defineProps(['imageUrl1'])
+defineProps(['imageUrl'])
 </script>
 
 <template>
     <div class="image-frame-opponent">
-        <img class="sizeimg-1" :src="imageUrl1" alt="" />
+        <img class="sizeimg" :src="imageUrl" alt="" />
     </div>
 </template>
 
@@ -23,7 +23,7 @@ defineProps(['imageUrl1'])
     height: 320px;
     width: 240px;
 }
-.sizeimg-1 {
+.sizeimg {
     object-fit: cover;
     border: 2px solid black;
     border-top: none;

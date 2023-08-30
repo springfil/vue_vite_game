@@ -1,14 +1,14 @@
 <script setup>
-import { computed, inject, onMounted } from 'vue'
+import { computed, inject, onMounted, watch, ref} from 'vue'
 import GamePersonImage from '@/components/GamePerson/GamePersonImage.vue'
 import GamePersonProgressBar from '@/components/GamePerson/GamePersonProgressBar.vue'
 import { loadImage } from '@/utils/loadImage.js'
-import { getRandom } from '@/utils/getRandom'
 import small from '@/assets/GamePerson/nezuko_small.jpg'
 import medium from '@/assets/GamePerson/nezuko_medium.jpg'
 import high from '@/assets/GamePerson/nezuko_high.jpg'
 
 const difficult = inject('data')
+const getProgressBarWidth = ref({})
 
 const getImageUrl = computed(() => {
     switch (difficult.value) {
@@ -27,45 +27,37 @@ onMounted(async () => {
     await Promise.all([loadImage(small), loadImage(medium), loadImage(high)])
 })
 
-const minShift = computed(() => {
-    if (difficult.value === 2) {
-        console.log("min2")
-        return 5
-    } else if (difficult.value === 4) {
-        console.log("min4")
-        return 10
-    } else {
-        console.log("minzopa")
-        return 15
+watch(difficult, (newDifficult) => {
+    if (newDifficult === 2) {
+        return getProgressBarWidth.value = { shift: 10 }
+    }
+
+    if (newDifficult === 4) {
+        return getProgressBarWidth.value = { shift: 15 }
+    }
+
+    if (newDifficult === 6) {
+        return getProgressBarWidth.value = { shift: 20 }
+    }
+
+    if (newDifficult === 8) {
+        return getProgressBarWidth.value = { shift: 25 }
+    }
+
+    if (newDifficult === 10) {
+        return getProgressBarWidth.value = { shift: 30 }
+    }
+
+    if (![2,4,6,8,10].includes(newDifficult)) {
+        return getProgressBarWidth.value = { shift: 35 }
     }
 })
 
-const maxShift = computed(() => {
-    if (difficult.value === 2) {
-        console.log("max4")
-        return 10
-    } else if (difficult.value === 4) {
-        console.log("max4")
-        return 15
-    } else {
-        console.log("maxzop")
-        return 40
-    }
-    
-})
-
-const getProgressBarWidth = computed(() => {
-    const shift = getRandom(minShift.value, maxShift.value)
-    console.log(shift)
-    return { shift }
-})
 </script>
 
 <template>
     <div class="container-person">
-        <!-- <transition name="bounce"> -->
-            <game-person-image :image-url="getImageUrl" :key="difficult" />
-        <!-- </transition> -->
+            <game-person-image :image-url="getImageUrl" :key="difficult"/>
         <game-person-progress-bar :progress-bar-width="getProgressBarWidth" />
     </div>
 </template>
@@ -76,18 +68,4 @@ const getProgressBarWidth = computed(() => {
     flex-direction: column;
     align-items: center;
 }
-/* .bounce-enter-active {
-    animation: bounce-in 2s;
-}
-@keyframes bounce-in {
-    0% {
-        transform: scale(0.5);
-    }
-    100% {
-        transform: scale(1);
-    }
-} */
-/* .bounce-leave-active {
-    animation: bounce-in 2s reverse;
-} */
 </style>

@@ -11,7 +11,6 @@ defineProps(['imageUrl'])
 </template>
 
 <style scoped>
-
 .image-frame {
     border: 2px solid black;
     border-top: none;
@@ -35,19 +34,17 @@ defineProps(['imageUrl'])
     width: 100%;
 }
 .image-frame img {
-  animation-name: image-fade;
-  animation-duration: 2s;
-  animation-fill-mode: forwards; 
+    animation-name: image-fade;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
 }
 
 @keyframes image-fade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
-
-
 </style>

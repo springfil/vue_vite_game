@@ -1,60 +1,101 @@
 <script setup>
-import { defineProps, watch, ref, inject, computed } from 'vue'
-
-const data2 = inject('data2')
-
-const props = defineProps(['progressBarWidth'])
-const shifted = ref(180)
-
-watch(
-    () => props.progressBarWidth.shift,
-    (newShift) => {
-        shifted.value -= newShift
-        data2.value = newShift
-        console.log(newShift)
-    }, 
-    //{immediate: true}
-)
-
-
- </script>
-
-<!-- <script setup>
-import { defineProps, computed, inject, watch} from 'vue'
+import { defineProps, computed, inject, watch } from 'vue'
+import { getRandom } from '@/utils/getRandom'
 
 const data2 = inject('data2')
 
 const props = defineProps(['progressBarWidth'])
 let width = 180
-const shifted = computed(() => width - props.progressBarWidth.shift)
 
-watch(
-   
-    () => props.progressBarWidth.shift,
-    (newShift) => {
-        debugger
-        data2.value = newShift    
-    },
-)
-</script>   -->
-
-<!-- <script setup>
-import { watchEffect, defineProps, inject, ref } from 'vue'
-
-const data2 = inject('data2')
-
-const props = defineProps(['progressBarWidth'])
-const shifted = ref(180)
-
-watchEffect(() => {
-    shifted.value -= props.progressBarWidth.shift
-    data2.value = props.progressBarWidth.shift
+const minShift = computed(() => {
+    if (props.progressBarWidth.shift === 10) {
+        console.log('max10')
+        return 5
+    }
+    if (props.progressBarWidth.shift === 15) {
+        console.log('max10')
+        return 8
+    }
+    if (props.progressBarWidth.shift === 20) {
+        console.log('max10')
+        return 10
+    }
+    if (props.progressBarWidth.shift === 25) {
+        console.log('max10')
+        return 25
+    }
+    if (props.progressBarWidth.shift === 30) {
+        console.log('max10')
+        return 20
+    }
+    if (props.progressBarWidth.shift === 35) {
+        console.log('max10')
+        return 30
+    }
 })
-</script> -->
+
+const maxShift = computed(() => {
+    if (props.progressBarWidth.shift === 10) {
+        return 10
+    }
+    if (props.progressBarWidth.shift === 15) {
+        return 16
+    }
+    if (props.progressBarWidth.shift === 20) {
+        return 25
+    }
+    if (props.progressBarWidth.shift === 25) {
+        return 25
+    }
+    if (props.progressBarWidth.shift === 30) {
+        return 37
+    }
+    if (props.progressBarWidth.shift === 35) {
+        return 45
+    }
+   
+})
+
+const shifted = computed(() => {
+    if (props.progressBarWidth.shift === 10) {
+        width = width - getRandom(minShift.value, maxShift.value)
+        return width
+    }
+    if (props.progressBarWidth.shift === 15) {
+        width = width - getRandom(minShift.value, maxShift.value)
+        return width
+    }
+    if (props.progressBarWidth.shift === 20) {
+        width = width - getRandom(minShift.value, maxShift.value)
+        return width
+    }
+    if (props.progressBarWidth.shift === 25) {
+        width = width - getRandom(minShift.value, maxShift.value)
+        return width
+    }
+    if (props.progressBarWidth.shift === 30) {
+        width = width - getRandom(minShift.value, maxShift.value)
+        return width
+    }
+    if (props.progressBarWidth.shift === 35) {
+        width = width - getRandom(minShift.value, maxShift.value)
+        return width
+    }
+       
+})
+
+ watch(
+     () => props.progressBarWidth.shift,
+     (newShift) => {
+         data2.value = width - shifted.value
+     },
+ )
+</script>
 
 <template>
     <div class="progress-bar-frame">
         <div class="progress-bar" :style="{ width: shifted + 'px' }"></div>
+        {{ shifted }}
     </div>
 </template>
 

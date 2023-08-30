@@ -24,7 +24,7 @@ const getImageUrl = computed(() => {
 })
 
 onMounted(async () => {
-    await Promise.all([loadImage(small1), loadImage(medium1), loadImage(high)])
+    await Promise.all([loadImage(small), loadImage(medium), loadImage(high)])
 })
 
 watch(difficult, (newDifficult) => {
@@ -36,25 +36,41 @@ watch(difficult, (newDifficult) => {
         return (getProgressBarWidth.value = { shift: 15 })
     }
 
-    if (newDifficult !== 4 && newDifficult !== 2) {
+    if (newDifficult === 6) {
         return (getProgressBarWidth.value = { shift: 20 })
+    }
+
+    if (newDifficult === 8) {
+        return (getProgressBarWidth.value = { shift: 25 })
+    }
+
+    if (newDifficult === 10) {
+        return (getProgressBarWidth.value = { shift: 30 })
+    }
+
+    if (newDifficult === 12) {
+        return (getProgressBarWidth.value = { shift: 35 })
+    }
+
+    if (newDifficult === 14) {
+        return (getProgressBarWidth.value = { shift: 40 })
+    }
+
+    if (![2,4,6,8,10,12,14].includes(newDifficult)) {
+        return (getProgressBarWidth.value = { shift: 45 })
     }
 })
 </script>
 
 <template>
     <div class="container-opponent">
-        <!-- <transition name="bounce"> -->
-            <game-opponent-image
-                :image-url1="getImageUrl"
-                :key="difficult.value" />
-        <!-- </transition> -->
+        <game-opponent-image :image-url="getImageUrl" :key="difficult" />
         <game-opponent-progress-bar :progress-bar-width="getProgressBarWidth" />
     </div>
 </template>
 
 <style scoped>
-.container-opponent{
+.container-opponent {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,15 +79,4 @@ watch(difficult, (newDifficult) => {
 .bounce-enter-active {
     animation: bounce-in 2s;
 }
-/* .bounce-leave-active {
-    animation: bounce-in 0.1s reverse;
-} */
-/* @keyframes bounce-in {
-    0% {
-        transform: scale(0);
-    }
-    100% {
-        transform: scale(1);
-    }
-} */
 </style>
