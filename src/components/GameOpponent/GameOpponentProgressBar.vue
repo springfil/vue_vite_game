@@ -7,31 +7,6 @@ const isInitialWidth = inject('isInitialWidth')
 let width = 180
 
 const shifted = computed(() => {
-    // if (props.progressBarWidth.shift === 10) {
-    //     width = width - 10
-    //     return width
-    // }else if (props.progressBarWidth.shift === 15) {
-    //     width = width - 15
-    //     return width
-    // } else if (props.progressBarWidth.shift === 20) {
-    //     width = width - 20
-    //     return width
-    // }else if (props.progressBarWidth.shift === 25) {
-    //     width = width - 25
-    //     return width
-    // }else if (props.progressBarWidth.shift === 30) {
-    //     width = width - 30
-    //     return width
-    // }else if (props.progressBarWidth.shift === 35) {
-    //     width = width - 35
-    //     return width
-    // }else if (props.progressBarWidth.shift === 40) {
-    //     width = width - 40
-    //     return width
-    // }else if (props.progressBarWidth.shift === 45) {
-    //     width = width - 45
-    //     return width
-    // }  
     if (props.progressBarWidth.shift === 10 && isInitialWidth.value) {
         width = width - 10
         return width
@@ -74,7 +49,6 @@ const shifted = computed(() => {
 <template>
     <div class="progress-bar-frame">
         <div class="progress-bar" :style="{ width: shifted + 'px' }"></div>
-        {{shifted}}
     </div>
 </template>
 
