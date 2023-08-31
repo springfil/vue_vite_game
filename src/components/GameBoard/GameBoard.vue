@@ -13,6 +13,7 @@ const isInitialWidth = inject('isInitialWidth')
 
 const updateData = () => {
     data.value = difficult.value
+    console.log(difficult.value)
 }
 
 const numberOfCells = 25

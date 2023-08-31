@@ -6,12 +6,12 @@ import GameOpponent from '@/components/GameOpponent/GameOpponent.vue'
 import GameJournal from '@/components/GameJournal/GameJournal.vue'
 import PopupInit from '@/components/Popup/PopupInit.vue'
 
-const data = ref(2)
+const data = ref(1)
 provide('data', data)
 
 const data2 = ref(1)
 provide('data2', data2)
-
+//inject gameOpponentProgressBar gamePersonProgressBar gameBoard
 const isInitialWidth = ref(true)
 provide("isInitialWidth", isInitialWidth)
 </script>
