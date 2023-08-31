@@ -1,6 +1,7 @@
 <template>
     <div>
         <Journal :log="log" />
+        <button @click="increase++">дубль журнала{{ increase }}</button>
     </div>
 </template>
 
@@ -10,7 +11,10 @@ import { ref, inject, watch, computed } from 'vue'
 
 const damageMultiplierPerson = inject('data')
 const damageMultiplierOpponent = inject('data2')
+const isInitialWidth = inject('isInitialWidth')
+
 const log = ref([])
+const increase = ref(1)
 
 const damagePerson = computed(() => {
     if (damageMultiplierPerson.value === 2) {
@@ -32,16 +36,26 @@ const damagePerson = computed(() => {
     }
 })
 
-function attack() {
-    const damageOpponent = damageMultiplierOpponent.value
-    const time = new Date().toLocaleTimeString()
-    log.value.unshift({
-        attacker: 'Nezuko',
-        damagePerson: damagePerson.value,
-        damageOpponent,
-        time,
-    })
+const attack = () => {
+    if (!isInitialWidth.value) {
+        log.value = [
+            {
+                isNewGame: true,
+                time: new Date().toLocaleTimeString(),
+            },
+        ]
+        // isInitialWidth.value = true;
+    } else {
+        const damageOpponent = damageMultiplierOpponent.value
+        const time = new Date().toLocaleTimeString()
+        log.value.unshift({
+            attacker: 'Nezuko',
+            damagePerson: damagePerson.value,
+            damageOpponent,
+            time,
+        })
+    }
 }
 
-watch(damageMultiplierPerson, attack)
+watch([damageMultiplierPerson, isInitialWidth, increase], attack)
 </script>

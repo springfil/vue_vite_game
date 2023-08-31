@@ -1,11 +1,15 @@
 <template>
     <div class="journal">
-        <!-- <span>Боевой журнал</span> -->
         <transition-group name="slide-fade" tag="div" class="log-container">
             <li v-for="entry in log" :key="entry.time" class="log-entry">
-                {{ entry.attacker }} нанес {{ entry.damagePerson }} урона,
-                получив от противника {{ entry.damageOpponent }} урона -
-                {{ entry.time }}
+                <template v-if="entry.isNewGame">
+                    Вы начали заново в {{ entry.time }}
+                </template>
+                <template v-else>
+                    {{ entry.attacker }} нанес {{ entry.damagePerson }} урона,
+                    получив от противника {{ entry.damageOpponent }} урона -
+                    {{ entry.time }}
+                </template>
             </li>
         </transition-group>
     </div>
@@ -18,7 +22,7 @@ const props = defineProps(['log'])
 </script>
 
 <style scoped>
-.journal{
+.journal {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,7 +31,7 @@ const props = defineProps(['log'])
 .log-entry {
     padding: 3px;
     margin-bottom: 2px;
-    background-color: rgba(255, 255, 255, 0.5);;
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 12px;
     width: 500px;
     align-items: center;
@@ -41,7 +45,6 @@ const props = defineProps(['log'])
     max-height: 74px;
     overflow-y: auto;
     overflow-x: hidden;
-
 }
 
 .slide-fade-enter-active {
