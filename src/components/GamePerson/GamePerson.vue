@@ -19,7 +19,7 @@ const getImageUrl = computed(() => {
         case 6:
             return high
         default:
-            return high
+            return small
     }
 })
 
@@ -51,14 +51,21 @@ watch(difficult, (newDifficult) => {
     if (![2,4,6,8,10].includes(newDifficult)) {
         return getProgressBarWidth.value = { shift: 35 }
     }
-})
+},)
 
 </script>
 
 <template>
+
     <div class="container-person">
+        <slot name="image">
             <game-person-image :image-url="getImageUrl" :key="difficult"/>
-        <game-person-progress-bar :progress-bar-width="getProgressBarWidth" />
+        </slot>
+        <slot name="bar">
+            <game-person-progress-bar :progress-bar-width="getProgressBarWidth" />
+        </slot>
+            
+    
     </div>
 </template>
 

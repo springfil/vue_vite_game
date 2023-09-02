@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue'
 import PopupSlots from '@/components/Popup/PopupSlots.vue'
-import GamePerson from '@/components/GamePerson/GamePerson.vue'
 
 const isPopupOpen = ref(false)
 
@@ -22,7 +21,6 @@ const popupConfirmed = () => {
                 :is-open="isPopupOpen"
                 @ok="popupConfirmed"
                 @close="isPopupOpen = false">
-                <game-person />
             </popup-slots>
         </transition>
     </teleport>

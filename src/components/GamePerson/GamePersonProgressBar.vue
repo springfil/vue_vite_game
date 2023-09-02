@@ -2,10 +2,15 @@
 import { defineProps, computed, inject, watch } from 'vue'
 import { getRandom } from '@/utils/getRandom'
 
+const props = defineProps({
+    progressBarWidth: {
+        type: Object,
+        required: true,
+    },
+})
+
 const data2 = inject('data2')
 const isInitialWidth = inject("isInitialWidth")
-
-const props = defineProps(['progressBarWidth'])
 let width = 180
 
 const minShift = computed(() => {
@@ -75,20 +80,7 @@ watch( shifted, (newShift, oldShift = 180) => {
     data2.value = oldShift - newShift
     console.log(`width ${width}  newShift ${newShift} oldShift ${oldShift}`)
 })
-// watch(
-//      () => props.progressBarWidth.shift,
-//      (newShift) => {
-//          data2.value = width - shifted.value 
-//          console.log(`data ${data2.value} | width ${width} | shifted.value ${shifted.value}`)
-//      },
-//  )
-// watch(
-//      () => shifted.value,
-//      (newShift) => {
-//          data2.value = width - newShift
-//          console.log(`data ${data2.value} | width ${width} | newShift ${newShift}`)
-//      },
-//  )
+
 </script>
 
 <template>

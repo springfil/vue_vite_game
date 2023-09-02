@@ -19,7 +19,8 @@ const getImageUrl = computed(() => {
         case 6:
             return high
         default:
-            return high
+        console.log(Object.prototype.toString.call(small))
+            return small
     }
 })
 
@@ -60,6 +61,33 @@ watch(difficult, (newDifficult) => {
         return (getProgressBarWidth.value = { shift: 45 })
     }
 })
+
+// const getProgressBarWidth = computed(() => {
+//     let shift
+//     switch (difficult.value) {
+//         case 2:
+//           shift = 10;
+//           break;
+//         case 4:
+//           shift = 15;
+//           break;
+//         case 6:
+//           shift = 20;
+//           break;
+//         case 8:
+//           shift = 25;
+//           break;
+//         case 10:
+//           shift = 30;
+//           break;
+//         default:
+//           shift = 35;
+//           break;
+//       }
+
+//       return { shift };
+// })
+
 </script>
 
 <template>

@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, onBeforeUnmount } from 'vue'
+import GamePerson from '@/components/GamePerson/GamePerson.vue'
 
 const props = defineProps({
     isOpen: {
@@ -38,7 +39,10 @@ const confirm = () => {
         <div class="popup" @mousedown.stop>
             <h2>Победил:</h2>
             <hr />
-            <slot></slot>
+            <game-person >
+                <template v-slot:image ></template>
+                <template v-slot:bar></template>
+            </game-person>
             <hr />
             <div class="footer">
                 <slot name="actions" :close="close" :confirm="confirm">

@@ -18,7 +18,12 @@
 <script setup>
 import { defineProps } from 'vue'
 
-const props = defineProps(['log'])
+const props = defineProps({
+    log: {
+        type: Array,
+        required: true,
+    },
+})
 </script>
 
 <style scoped>

@@ -1,7 +1,12 @@
 <script setup>
 import { defineProps } from 'vue'
 
-defineProps(['imageUrl'])
+const props = defineProps({
+    imageUrl: {
+        type: String,
+        required: true,
+    },
+})
 </script>
 
 <template>
