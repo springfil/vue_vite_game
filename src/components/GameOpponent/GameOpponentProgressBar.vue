@@ -1,5 +1,7 @@
 <script setup>
 import { defineProps, computed, inject } from 'vue'
+import { UseProgressBar } from '@/store/progressBar';
+import { storeToRefs } from 'pinia'
 
 const props = defineProps({
     progressBarWidth: {
@@ -9,44 +11,46 @@ const props = defineProps({
 })
 const isInitialWidth = inject('isInitialWidth')
 
-let width = 180
+const store = UseProgressBar()
+const { width2 } = storeToRefs(store)
+
 
 const shifted = computed(() => {
     if (props.progressBarWidth.shift === 10 && isInitialWidth.value) {
-        width = width - 10
-        return width
+        width2.value = width2.value - 10
+        return width2.value
     }
     if (props.progressBarWidth.shift === 15 && isInitialWidth.value) {
-        width = width - 15
-        return width
+        width2.value = width2.value - 15
+        return width2.value
     }
     if (props.progressBarWidth.shift === 20 && isInitialWidth.value) {
-        width = width - 20
-        return width
+        width2.value = width2.value - 20
+        return width2.value
     }
     if (props.progressBarWidth.shift === 25 && isInitialWidth.value) {
-        width = width - 25
-        return width
+        width2.value = width2.value - 25
+        return width2.value
     }
     if (props.progressBarWidth.shift === 30 && isInitialWidth.value) {
-        width = width - 30
-        return width
+        width2.value = width2.value - 30
+        return width2.value
     }
     if (props.progressBarWidth.shift === 35 && isInitialWidth.value) {
-        width = width - 35
-        return width
+        width2.value = width2.value - 35
+        return width.value
     }
     if (props.progressBarWidth.shift === 40 && isInitialWidth.value) {
-        width = width - 40
-        return width
+        width2.value = width2.value - 40
+        return width.value
     }
     if (props.progressBarWidth.shift === 45 && isInitialWidth.value) {
-        width = width - 45
-        return width
+        width2.value = width2.value - 45
+        return width2.value
     }
     if (!isInitialWidth.value) {
-        width = 180
-        return width
+        width2.value = 180
+        return width2.value
     }
 })
 </script>

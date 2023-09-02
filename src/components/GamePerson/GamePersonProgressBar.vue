@@ -1,6 +1,8 @@
 <script setup>
 import { defineProps, computed, inject, watch } from 'vue'
 import { getRandom } from '@/utils/getRandom'
+import { UseProgressBar } from '@/store/progressBar';
+import { storeToRefs } from 'pinia'
 
 const props = defineProps({
     progressBarWidth: {
@@ -11,7 +13,10 @@ const props = defineProps({
 
 const data2 = inject('data2')
 const isInitialWidth = inject("isInitialWidth")
-let width = 180
+
+const store = UseProgressBar()
+const { width } = storeToRefs(store)
+
 
 const minShift = computed(() => {
     if (props.progressBarWidth.shift === 10) return 5
@@ -45,33 +50,33 @@ const maxShift = computed(() => {
 const shifted = computed(() => {
    
     if (props.progressBarWidth.shift === 10 && isInitialWidth.value) {
-        width = width - getRandom(minShift.value, maxShift.value)
-        return width
+        width.value = width.value - getRandom(minShift.value, maxShift.value)
+        return width.value
     }
     if (props.progressBarWidth.shift === 15 && isInitialWidth.value) {
-        width = width - getRandom(minShift.value, maxShift.value)
-        return width
+        width.value = width.value - getRandom(minShift.value, maxShift.value)
+        return width.value
     }
     if (props.progressBarWidth.shift === 20 && isInitialWidth.value) {
-        width = width - getRandom(minShift.value, maxShift.value)
-        return width
+        width.value = width.value - getRandom(minShift.value, maxShift.value)
+        return width.value
     }
     if (props.progressBarWidth.shift === 25 && isInitialWidth.value) {
-        width = width - getRandom(minShift.value, maxShift.value)
-        return width
+        width.value = width.value - getRandom(minShift.value, maxShift.value)
+        return width.value
     }
     if (props.progressBarWidth.shift === 30 && isInitialWidth.value) {
-        width = width - getRandom(minShift.value, maxShift.value)
-        return width
+        width.value = width.value - getRandom(minShift.value, maxShift.value)
+        return width.value
     }
     if (props.progressBarWidth.shift === 35 && isInitialWidth.value) {
-        width = width - getRandom(minShift.value, maxShift.value)
-        return width
+        width.value = width.value - getRandom(minShift.value, maxShift.value)
+        return width.value
     }
     if(!isInitialWidth.value){
         console.log ('сброс должен работать')
-        width = 180
-        return width
+        width.value = 180
+        return width.value
     }
        
 })
@@ -79,13 +84,14 @@ const shifted = computed(() => {
 watch( shifted, (newShift, oldShift = 180) => {
     data2.value = oldShift - newShift
     console.log(`width ${width}  newShift ${newShift} oldShift ${oldShift}`)
+    console.log(width)
 })
 
 </script>
 
 <template>
     <div class="progress-bar-frame">
-        <div class="progress-bar" :style="{ width: shifted + 'px' }"></div>
+        <div class="progress-bar" :style="{ width: width + 'px' }"></div>
     </div>
 </template>
 
