@@ -1,7 +1,7 @@
 <script setup>
-import { computed, defineProps, defineEmits } from "vue";
-import { GAME_STATUS } from "@/constants/GAME_STATUS";
-import { FIELD } from "@/constants/FIELD";
+import { computed, defineProps, defineEmits } from 'vue'
+import { GAME_STATUS } from '@/constants/GAME_STATUS'
+import { FIELD } from '@/constants/FIELD'
 
 const props = defineProps({
     field: {
@@ -13,33 +13,42 @@ const props = defineProps({
         required: false,
         default: GAME_STATUS.NONE,
     },
-});
+})
 
-const emit = defineEmits(["selectField"]);
+const emit = defineEmits(['selectField'])
+
+const isPreviewActive = computed(() => {
+    return (
+        props.field.value === FIELD.FILLED &&
+        props.gameStatus === GAME_STATUS.PREVIEW
+    )
+})
+
+const isActive = computed(() => {
+    return props.field.clicked && props.field.value === FIELD.FILLED
+})
+
+const isError = computed(() => {
+    return props.field.clicked && props.field.value === FIELD.EMPTY
+})
 
 const boardItemClasses = computed(() => {
-    let classes = "item ";
+    let classes = 'item '
 
-    if (
-        (props.field.value === FIELD.FILLED &&
-            props.gameStatus === GAME_STATUS.PREVIEW) ||
-        (props.field.clicked && props.field.value === FIELD.FILLED)
-    ) {
-        classes += "active";
+    if (isPreviewActive.value || isActive.value) {
+        classes += 'active'
     }
-
-    if (props.field.clicked && props.field.value === FIELD.EMPTY) {
-        classes += " error";
+    if (isError.value) {
+        classes += 'error'
     }
-
-    return classes;
-});
+    return classes
+})
 
 const select = (id) => {
     if (props.gameStatus === GAME_STATUS.STARTED) {
-        emit("selectField", id);
+        emit('selectField', id)
     }
-};
+}
 </script>
 
 <template>
@@ -52,7 +61,7 @@ const select = (id) => {
     width: 40px;
     height: 40px;
 
-    background: url("@/assets/logo.png");
+    background: url('@/assets/logo.png');
     background-size: cover;
     background-position: center;
 
@@ -67,14 +76,14 @@ const select = (id) => {
 }
 
 .item.active {
-    background: url("@/assets/board_nezuko.png");
+    background: url('@/assets/board_nezuko.png');
     background-size: cover;
     background-position: center;
     transform: rotateX(720deg);
 }
 
 .item.error {
-    background: url("@/assets/board_troll.png");
+    background: url('@/assets/board_troll.png');
     background-size: cover;
     background-position: center;
     transform: rotateX(720deg);
