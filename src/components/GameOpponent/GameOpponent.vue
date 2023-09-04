@@ -62,38 +62,18 @@ watch(difficult, (newDifficult) => {
     }
 })
 
-// const getProgressBarWidth = computed(() => {
-//     let shift
-//     switch (difficult.value) {
-//         case 2:
-//           shift = 10;
-//           break;
-//         case 4:
-//           shift = 15;
-//           break;
-//         case 6:
-//           shift = 20;
-//           break;
-//         case 8:
-//           shift = 25;
-//           break;
-//         case 10:
-//           shift = 30;
-//           break;
-//         default:
-//           shift = 35;
-//           break;
-//       }
-
-//       return { shift };
-// })
-
 </script>
 
 <template>
     <div class="container-opponent">
-        <game-opponent-image :image-url="getImageUrl" :key="difficult" />
-        <game-opponent-progress-bar :progress-bar-width="getProgressBarWidth" />
+        <slot name="image">
+
+            <game-opponent-image :image-url="getImageUrl" :key="difficult" />
+        </slot>
+        <slot name="bar">
+
+            <game-opponent-progress-bar :progress-bar-width="getProgressBarWidth" />
+        </slot>
     </div>
 </template>
 

@@ -55,7 +55,7 @@ const reset = () => {
                     v-for="field in fields"
                     :key="'item-' + field.id"
                     :field="field"
-                    @selectField="selectField($event)" />
+                    @select-field="selectField($event)" />
             </div>
 
             <game-board-log

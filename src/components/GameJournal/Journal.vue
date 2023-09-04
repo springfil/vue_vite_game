@@ -1,6 +1,6 @@
 <template>
     <div class="journal">
-        <transition-group name="slide-fade" tag="div" class="log-container">
+        <transition-group name="slide-fade" tag="ul" class="log-container">
             <li v-for="entry in log" :key="entry.time" class="log-entry">
                 <template v-if="entry.isNewGame">
                     Вы начали заново в {{ entry.time }}
