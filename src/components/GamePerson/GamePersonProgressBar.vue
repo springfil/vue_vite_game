@@ -83,8 +83,8 @@ const shifted = computed(() => {
 
 watch( shifted, (newShift, oldShift = 180) => {
     data2.value = oldShift - newShift
-    console.log(`width ${width}  newShift ${newShift} oldShift ${oldShift}`)
-    console.log(width)
+    console.log(`width ${data2.value}  newShift ${newShift} oldShift ${oldShift}`)
+    console.log(width.value)
 })
 
 </script>

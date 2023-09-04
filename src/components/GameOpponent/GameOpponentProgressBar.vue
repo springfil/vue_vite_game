@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, computed, inject } from 'vue'
+import { defineProps, watch, inject } from 'vue'
 import { UseProgressBar } from '@/store/progressBar';
 import { storeToRefs } from 'pinia'
 
@@ -9,46 +9,47 @@ const props = defineProps({
         required: true,
     },
 })
+
 const isInitialWidth = inject('isInitialWidth')
 
 const store = UseProgressBar()
 const { width2 } = storeToRefs(store)
 
 
-const shifted = computed(() => {
-    if (props.progressBarWidth.shift === 10 && isInitialWidth.value) {
+watch([() => props.progressBarWidth.shift, () => isInitialWidth.value],([shift, isInitial]) => {
+        if (shift === 10 && isInitial) {
         width2.value = width2.value - 10
         return width2.value
     }
-    if (props.progressBarWidth.shift === 15 && isInitialWidth.value) {
+    if (shift === 15 && isInitial) {
         width2.value = width2.value - 15
         return width2.value
     }
-    if (props.progressBarWidth.shift === 20 && isInitialWidth.value) {
+    if (shift === 20 && isInitial) {
         width2.value = width2.value - 20
         return width2.value
     }
-    if (props.progressBarWidth.shift === 25 && isInitialWidth.value) {
+    if (shift === 25 && isInitial) {
         width2.value = width2.value - 25
         return width2.value
     }
-    if (props.progressBarWidth.shift === 30 && isInitialWidth.value) {
+    if (shift === 30 && isInitial) {
         width2.value = width2.value - 30
         return width2.value
     }
-    if (props.progressBarWidth.shift === 35 && isInitialWidth.value) {
+    if (shift === 35 && isInitial) {
         width2.value = width2.value - 35
-        return width.value
+        return width2.value
     }
-    if (props.progressBarWidth.shift === 40 && isInitialWidth.value) {
+    if (shift === 40 && isInitial) {
         width2.value = width2.value - 40
-        return width.value
+        return width2.value
     }
-    if (props.progressBarWidth.shift === 45 && isInitialWidth.value) {
+    if (shift === 45 && isInitial) {
         width2.value = width2.value - 45
         return width2.value
     }
-    if (!isInitialWidth.value) {
+    if (!isInitial) {
         width2.value = 180
         return width2.value
     }
@@ -57,7 +58,7 @@ const shifted = computed(() => {
 
 <template>
     <div class="progress-bar-frame">
-        <div class="progress-bar" :style="{ width: shifted + 'px' }"></div>
+        <div class="progress-bar" :style="{ width: width2 + 'px' }"></div>
     </div>
 </template>
 

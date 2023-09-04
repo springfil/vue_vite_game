@@ -1,11 +1,18 @@
 <script setup>
 import { onMounted, onBeforeUnmount } from 'vue'
 import GamePerson from '@/components/GamePerson/GamePerson.vue'
+import GameOpponent from '@/components/GameOpponent/GameOpponent.vue'
 
 const props = defineProps({
     isOpen: {
         type: Boolean,
-        required: true,
+        required: false,
+        default: false,
+    },
+    isWin: {
+        type: Boolean,
+        required: false,
+        default: true,
     },
 })
 
@@ -26,11 +33,11 @@ const handleKeydown = (e) => {
 }
 
 const close = () => {
-    emit('close')
+    emit('closePopup')
 }
 
 const confirm = () => {
-    emit('ok')
+    emit('confirmPopup')
 }
 </script>
 
@@ -39,10 +46,18 @@ const confirm = () => {
         <div class="popup" @mousedown.stop>
             <h2>Победил:</h2>
             <hr />
-            <game-person >
-                <template v-slot:image ></template>
-                <template v-slot:bar></template>
-            </game-person>
+            <template v-if="isWin">
+                <game-person>
+                    <template v-slot:image></template>
+                    <template v-slot:bar></template>
+                </game-person>
+            </template>
+            <template v-else>
+                <game-opponent>
+                    <template v-slot:image></template>
+                    <template v-slot:bar></template>
+                </game-opponent>
+            </template>
             <hr />
             <div class="footer">
                 <slot name="actions" :close="close" :confirm="confirm">
