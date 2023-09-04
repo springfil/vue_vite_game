@@ -1,7 +1,7 @@
 import { FIELD } from '@/constants/FIELD'
 import { GAME_STATUS } from '@/constants/GAME_STATUS'
 import { GAME_SPEED } from '@/constants/GAME_SPEED'
-import { computed, inject } from 'vue'
+import { computed, inject, ref } from 'vue'
 import { getRandom } from '@/utils/getRandom'
 
 export default function useGameStart(
@@ -14,12 +14,16 @@ export default function useGameStart(
 ) {
     let timerId = null
     const isInitialWidth = inject('isInitialWidth')
+    let canReset = ref(false)
+    console.log(canReset.value)
 
     const start = () => {
         updateData()
         init()
         prepareGame()
         isInitialWidth.value = true
+        canReset.value = true
+        console.log(canReset.value)
     }
 
     const prepareGame = () => {
@@ -52,5 +56,6 @@ export default function useGameStart(
     return {
         start,
         canStartGame,
+        canReset,
     }
 }

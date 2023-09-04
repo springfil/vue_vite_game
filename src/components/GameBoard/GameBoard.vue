@@ -21,7 +21,7 @@ const gameStatus = ref(GAME_STATUS.NONE)
 
 const { difficult, fields, init } = useGameInit(numberOfCells)
 
-const { start, canStartGame } = useGameStart(
+const { start, canStartGame, canReset} = useGameStart(
     init,
     fields,
     difficult,
@@ -68,7 +68,7 @@ const reset = () => {
                     Старт
                 </button>
                 
-                <button class="btn reset" @click="reset">
+                <button class="btn reset" @click="reset" :disabled="!canReset">
                     Сброс
                 </button>
             </div>
