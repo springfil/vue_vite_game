@@ -19,7 +19,7 @@ const getImageUrl = computed(() => {
         case 6:
             return high
         default:
-        console.log(Object.prototype.toString.call(small))
+            console.log(Object.prototype.toString.call(small))
             return small
     }
 })
@@ -57,22 +57,20 @@ watch(difficult, (newDifficult) => {
         return (getProgressBarWidth.value = { shift: 40 })
     }
 
-    if (![2,4,6,8,10,12,14].includes(newDifficult)) {
+    if (![2, 4, 6, 8, 10, 12, 14].includes(newDifficult)) {
         return (getProgressBarWidth.value = { shift: 45 })
     }
 })
-
 </script>
 
 <template>
     <div class="container-opponent">
         <slot name="image">
-
             <game-opponent-image :image-url="getImageUrl" :key="difficult" />
         </slot>
         <slot name="bar">
-
-            <game-opponent-progress-bar :progress-bar-width="getProgressBarWidth" />
+            <game-opponent-progress-bar
+                :progress-bar-width="getProgressBarWidth" />
         </slot>
     </div>
 </template>
@@ -82,9 +80,5 @@ watch(difficult, (newDifficult) => {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.bounce-enter-active {
-    animation: bounce-in 2s;
 }
 </style>

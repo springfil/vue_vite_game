@@ -27,7 +27,7 @@ watch([width, width2], ([newWidth, newWidth2]) => {
 
 <template>
     <teleport to="body">
-        <transition name="modal">
+        <transition name="popup">
             <popup-slots
                 :is-win="isWin"
                 :is-open="isPopupOpen"
@@ -39,14 +39,5 @@ watch([width, width2], ([newWidth, newWidth2]) => {
 </template>
 
 <style scoped>
-.modal-enter-active,
-.modal-leave-active {
-    transition: all 0.25s ease;
-}
 
-.modal-enter-from,
-.modal-leave-to {
-    opacity: 0;
-    transform: scale(1.1);
-}
 </style>

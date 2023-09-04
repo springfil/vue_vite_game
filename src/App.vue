@@ -38,6 +38,10 @@ provide("isInitialWidth", isInitialWidth)
     <popup-init />
 </template>
 
+<style>
+    @import './styles/transition.css';
+</style>
+
 <style scoped>
 .wrapper {
     max-width: 1000px;
