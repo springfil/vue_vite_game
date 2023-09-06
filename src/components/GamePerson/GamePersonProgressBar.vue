@@ -87,6 +87,12 @@ watch( shifted, (newShift, oldShift = 180) => {
     console.log(width.value)
 })
 
+watch(
+    () => width.value,
+    (newShith) => {
+        if (newShith < 0) return (width.value = 0)
+    },
+)
 </script>
 
 <template>
@@ -108,6 +114,6 @@ watch( shifted, (newShift, oldShift = 180) => {
     height: 100%;
     background-color: #c0392b;
     border-radius: 15px;
-    transition: width 2s;
+    transition: width 1s;
 }
 </style>
