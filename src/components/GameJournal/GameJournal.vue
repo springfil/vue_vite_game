@@ -1,7 +1,6 @@
 <template>
     <div>
         <Journal :log="log" />
-        <button @click="increase++">дубль журнала{{ increase }}</button>
     </div>
 </template>
 
@@ -14,7 +13,6 @@ const damageMultiplierOpponent = inject('data2')
 const isInitialWidth = inject('isInitialWidth')
 
 const log = ref([])
-const increase = ref(1)
 
 const damagePerson = computed(() => {
     if (damageMultiplierPerson.value === 2) {
@@ -44,7 +42,6 @@ const attack = () => {
                 time: new Date().toLocaleTimeString(),
             },
         ]
-        // isInitialWidth.value = true;
     } else {
         const damageOpponent = damageMultiplierOpponent.value
         const time = new Date().toLocaleTimeString()
@@ -57,5 +54,5 @@ const attack = () => {
     }
 }
 
-watch([damageMultiplierPerson, isInitialWidth, increase], attack)
+watch([damageMultiplierPerson, isInitialWidth], attack)
 </script>

@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted, watch, ref } from 'vue'
 const props = defineProps({
     difficult: {
         type: Number,
@@ -13,12 +14,21 @@ const props = defineProps({
         required: true,
     },
 })
+
+const multiplier = ref(2)
+
+watch(
+    () => props.difficult,
+    (newDifficult) => {
+        multiplier.value = newDifficult / 2 + 1
+    },
+)
 </script>
 
 <template>
     <div class="board-log">
         <p class="difficult">
-            Множитель атаки <strong>X*{{ difficult }}</strong>
+            Множитель атаки <strong>X*{{ multiplier }}</strong>
         </p>
         <transition name="slide-up">
             <p class="next" v-if="isNext">УСИЛЕНИЕ</p>
@@ -28,7 +38,7 @@ const props = defineProps({
 </template>
 
 <style scoped>
-.board-log{
+.board-log {
     height: 72px;
 }
 </style>
