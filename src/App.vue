@@ -40,6 +40,7 @@ provide("isInitialWidth", isInitialWidth)
 
 <style>
     @import './styles/transition.css';
+    @import './styles/fonts.css';
 </style>
 
 <style scoped>
@@ -57,7 +58,8 @@ provide("isInitialWidth", isInitialWidth)
 }
 
 .app {
-    font-family: Helvetica, sans-serif;
+    font-family: 'Rubik Iso', cursive;
+    letter-spacing: 2px;
     text-align: center;
     margin-top: 5px;
 }

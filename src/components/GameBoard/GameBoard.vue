@@ -100,6 +100,7 @@ const reset = () => {
     margin: 10px 5px;
     cursor: pointer;
     outline: none;
+    font-family: 'Rubik Iso', cursive;
 }
 
 .btn + .reset:hover{
