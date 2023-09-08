@@ -42,7 +42,7 @@ const reset = () => {
     difficult.value = 2
     updateData()
     isInitialWidth.value = false
-    console.log(isInitialWidth.value)
+    canReset.value = false
 }
 </script>
 
@@ -108,6 +108,10 @@ const reset = () => {
 
 .btn:hover {
     background: rgb(230, 50, 215, 0.5);
+}
+
+.btn:disabled {
+    cursor: not-allowed;
 }
 
 .button-container {
