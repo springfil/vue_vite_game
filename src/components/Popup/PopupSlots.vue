@@ -9,15 +9,14 @@ const props = defineProps({
         required: false,
         default: false,
     },
-    isWin: {
-        type: Boolean,
+    win: {
+        type: String,
         required: false,
-        default: true,
+        default: 'draw',
     },
 })
 
 const emit = defineEmits(['confirm-popup', 'close-popup'])
-
 
 const handleKeydown = (e) => {
     if (props.isOpen && e.key === 'Escape') {
@@ -45,19 +44,32 @@ onBeforeUnmount(() => {
 <template>
     <div v-if="isOpen" class="backdrop" @mousedown="close">
         <div class="popup" @mousedown.stop>
-            <h2>Победил:</h2>
+            <h2>{{ win === 'draw' ? 'Ничья!' : 'Победа:' }}</h2>
             <hr />
-            <template v-if="isWin">
+            <template v-if="win === 'person'">
                 <game-person>
                     <template v-slot:image></template>
                     <template v-slot:bar></template>
                 </game-person>
             </template>
-            <template v-else>
+            <template v-else-if="win === 'opponent'">
                 <game-opponent>
                     <template v-slot:image></template>
                     <template v-slot:bar></template>
                 </game-opponent>
+            </template>
+            <template v-else-if="win === 'draw'">
+                <div class="draw">
+                    <game-person>
+                        <template v-slot:image></template>
+                        <template v-slot:bar></template>
+                    </game-person>
+                    <div class="space"></div>
+                    <game-opponent>
+                        <template v-slot:image></template>
+                        <template v-slot:bar></template>
+                    </game-opponent>
+                </div>
             </template>
             <hr />
             <div class="footer">
@@ -98,5 +110,16 @@ onBeforeUnmount(() => {
 
 .footer {
     text-align: right;
+}
+
+.draw {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.space {
+    width: 20px; 
 }
 </style>

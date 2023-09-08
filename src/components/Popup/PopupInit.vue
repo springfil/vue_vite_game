@@ -13,9 +13,10 @@ const popupConfirmed = () => {
     isPopupOpen.value = false
 }
 
-const isWin = computed(() => {
-    if (HpPerson.value <= 0) return false
-    if (HpOpponent.value <= 0) return true
+const win = computed(() => {
+    if (HpPerson.value === 0 && HpOpponent.value > 0) return 'opponent'
+    if (HpOpponent.value === 0 && HpPerson.value > 0) return 'person'
+    if (HpPerson.value === 0 && HpOpponent.value === 0) return 'draw' 
 })
 
 watch([HpPerson, HpOpponent], ([RemainingHpPerson, RemainingHpOpponent]) => {
@@ -29,7 +30,7 @@ watch([HpPerson, HpOpponent], ([RemainingHpPerson, RemainingHpOpponent]) => {
     <teleport to="body">
         <transition name="popup">
             <popup-slots
-                :is-win="isWin"
+                :win="win"
                 :is-open="isPopupOpen"
                 @confirm-popup="popupConfirmed"
                 @close-popup="isPopupOpen = false">
