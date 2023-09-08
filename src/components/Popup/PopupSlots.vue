@@ -16,15 +16,8 @@ const props = defineProps({
     },
 })
 
-const emit = defineEmits(['ok', 'close'])
+const emit = defineEmits(['confirm-popup', 'close-popup'])
 
-onMounted(() => {
-    document.addEventListener('keydown', handleKeydown)
-})
-
-onBeforeUnmount(() => {
-    document.removeEventListener('keydown', handleKeydown)
-})
 
 const handleKeydown = (e) => {
     if (props.isOpen && e.key === 'Escape') {
@@ -33,12 +26,20 @@ const handleKeydown = (e) => {
 }
 
 const close = () => {
-    emit('closePopup')
+    emit('close-popup')
 }
 
 const confirm = () => {
-    emit('confirmPopup')
+    emit('confirm-popup')
 }
+
+onMounted(() => {
+    document.addEventListener('keydown', handleKeydown)
+})
+
+onBeforeUnmount(() => {
+    document.removeEventListener('keydown', handleKeydown)
+})
 </script>
 
 <template>

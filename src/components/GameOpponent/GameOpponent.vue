@@ -24,9 +24,6 @@ const getImageUrl = computed(() => {
     }
 })
 
-onMounted(async () => {
-    await Promise.all([loadImage(small), loadImage(medium), loadImage(high)])
-})
 
 watch(difficult, (newDifficult) => {
     if (newDifficult === 2) {
@@ -56,10 +53,14 @@ watch(difficult, (newDifficult) => {
     if (newDifficult === 14) {
         return (getProgressBarWidth.value = { shift: 40 })
     }
-
+    
     if (![2, 4, 6, 8, 10, 12, 14].includes(newDifficult)) {
         return (getProgressBarWidth.value = { shift: 45 })
     }
+})
+
+onMounted(async () => {
+    await Promise.all([loadImage(small), loadImage(medium), loadImage(high)])
 })
 </script>
 

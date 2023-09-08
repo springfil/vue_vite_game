@@ -15,7 +15,7 @@ const data2 = inject('data2')
 const isInitialWidth = inject("isInitialWidth")
 
 const store = UseProgressBar()
-const { width } = storeToRefs(store)
+const { HpPerson } = storeToRefs(store)
 
 
 const minShift = computed(() => {
@@ -50,54 +50,52 @@ const maxShift = computed(() => {
 const shifted = computed(() => {
    
     if (props.progressBarWidth.shift === 10 && isInitialWidth.value) {
-        width.value = width.value - getRandom(minShift.value, maxShift.value)
-        return width.value
+        HpPerson.value = HpPerson.value - getRandom(minShift.value, maxShift.value)
+        return HpPerson.value
     }
     if (props.progressBarWidth.shift === 15 && isInitialWidth.value) {
-        width.value = width.value - getRandom(minShift.value, maxShift.value)
-        return width.value
+        HpPerson.value = HpPerson.value - getRandom(minShift.value, maxShift.value)
+        return HpPerson.value
     }
     if (props.progressBarWidth.shift === 20 && isInitialWidth.value) {
-        width.value = width.value - getRandom(minShift.value, maxShift.value)
-        return width.value
+        HpPerson.value = HpPerson.value - getRandom(minShift.value, maxShift.value)
+        return HpPerson.value
     }
     if (props.progressBarWidth.shift === 25 && isInitialWidth.value) {
-        width.value = width.value - getRandom(minShift.value, maxShift.value)
-        return width.value
+        HpPerson.value = HpPerson.value - getRandom(minShift.value, maxShift.value)
+        return HpPerson.value
     }
     if (props.progressBarWidth.shift === 30 && isInitialWidth.value) {
-        width.value = width.value - getRandom(minShift.value, maxShift.value)
-        return width.value
+        HpPerson.value = HpPerson.value - getRandom(minShift.value, maxShift.value)
+        return HpPerson.value
     }
     if (props.progressBarWidth.shift === 35 && isInitialWidth.value) {
-        width.value = width.value - getRandom(minShift.value, maxShift.value)
-        return width.value
+        HpPerson.value = HpPerson.value - getRandom(minShift.value, maxShift.value)
+        return HpPerson.value
     }
     if(!isInitialWidth.value){
         console.log ('сброс должен работать')
-        width.value = 180
-        return width.value
+        HpPerson.value = 180
+        return HpPerson.value
     }
        
 })
 
 watch( shifted, (newShift, oldShift = 180) => {
     data2.value = oldShift - newShift
-    console.log(`width ${data2.value}  newShift ${newShift} oldShift ${oldShift}`)
-    console.log(width.value)
 })
 
 watch(
-    () => width.value,
+    () => HpPerson.value,
     (newShith) => {
-        if (newShith < 0) return (width.value = 0)
+        if (newShith < 0) return (HpPerson.value = 0)
     },
 )
 </script>
 
 <template>
     <div class="progress-bar-frame">
-        <div class="progress-bar" :style="{ width: width + 'px' }"></div>
+        <div class="progress-bar" :style="{ width: HpPerson + 'px' }"></div>
     </div>
 </template>
 

@@ -15,7 +15,7 @@ const props = defineProps({
     },
 })
 
-const emit = defineEmits(['selectField'])
+const emit = defineEmits(['select-field'])
 
 const isPreviewActive = computed(() => {
     return (
@@ -46,7 +46,7 @@ const boardItemClasses = computed(() => {
 
 const select = (id) => {
     if (props.gameStatus === GAME_STATUS.STARTED) {
-        emit('selectField', id)
+        emit('select-field', id)
     }
 }
 </script>
