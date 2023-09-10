@@ -1,11 +1,11 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import PopupSlots from '@/components/Popup/PopupSlots.vue'
-import { UseProgressBar } from '@/store/progressBar'
+import { useProgressBar } from '@/store/progressBar'
 import { storeToRefs } from 'pinia'
 
-const store = UseProgressBar()
-const { HpPerson, HpOpponent } = storeToRefs(store)
+const store = useProgressBar()
+const { hpPerson, hpOpponent } = storeToRefs(store)
 
 const isPopupOpen = ref(false)
 
@@ -13,14 +13,14 @@ const popupConfirmed = () => {
     isPopupOpen.value = false
 }
 
-const win = computed(() => {
-    if (HpPerson.value === 0 && HpOpponent.value > 0) return 'opponent'
-    if (HpOpponent.value === 0 && HpPerson.value > 0) return 'person'
-    if (HpPerson.value === 0 && HpOpponent.value === 0) return 'draw' 
+const gameResult = computed(() => {
+    if (hpPerson.value === 0 && hpOpponent.value > 0) return 'opponent'
+    if (hpOpponent.value === 0 && hpPerson.value > 0) return 'person'
+    if (hpPerson.value === 0 && hpOpponent.value === 0) return 'draw' 
 })
 
-watch([HpPerson, HpOpponent], ([RemainingHpPerson, RemainingHpOpponent]) => {
-    if (RemainingHpPerson <= 0 || RemainingHpOpponent <= 0) {
+watch([hpPerson, hpOpponent], ([remainingHpPerson, remainingHpOpponent]) => {
+    if (remainingHpPerson <= 0 || remainingHpOpponent <= 0) {
         isPopupOpen.value = true
     }
 })
@@ -30,7 +30,7 @@ watch([HpPerson, HpOpponent], ([RemainingHpPerson, RemainingHpOpponent]) => {
     <teleport to="body">
         <transition name="popup">
             <popup-slots
-                :win="win"
+                :game-result="gameResult"
                 :is-open="isPopupOpen"
                 @confirm-popup="popupConfirmed"
                 @close-popup="isPopupOpen = false">

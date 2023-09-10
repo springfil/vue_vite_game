@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps, watch, inject } from 'vue'
-import { UseProgressBar } from '@/store/progressBar'
+import { useProgressBar } from '@/store/progressBar'
 import { storeToRefs } from 'pinia'
 
 const props = defineProps({
@@ -12,62 +12,65 @@ const props = defineProps({
 
 const isInitialWidth = inject('isInitialWidth')
 
-const store = UseProgressBar()
-const { HpOpponent } = storeToRefs(store)
+const store = useProgressBar()
+const { hpOpponent } = storeToRefs(store)
 
 watch(
     [() => props.progressBarWidth.shift, () => isInitialWidth.value],
     ([shift, isInitial]) => {
         if (shift === 10 && isInitial) {
-            HpOpponent.value = HpOpponent.value - 10
-            return HpOpponent.value
+            hpOpponent.value = hpOpponent.value - 10
+            return hpOpponent.value
         }
         if (shift === 15 && isInitial) {
-            HpOpponent.value = HpOpponent.value - 15
-            return HpOpponent.value
+            hpOpponent.value = hpOpponent.value - 15
+            return hpOpponent.value
         }
         if (shift === 20 && isInitial) {
-            HpOpponent.value = HpOpponent.value - 20
-            return HpOpponent.value
+            hpOpponent.value = hpOpponent.value - 20
+            return hpOpponent.value
         }
         if (shift === 25 && isInitial) {
-            HpOpponent.value = HpOpponent.value - 25
-            return HpOpponent.value
+            hpOpponent.value = hpOpponent.value - 25
+            return hpOpponent.value
         }
         if (shift === 30 && isInitial) {
-            HpOpponent.value = HpOpponent.value - 30
-            return HpOpponent.value
+            hpOpponent.value = hpOpponent.value - 30
+            return hpOpponent.value
         }
         if (shift === 35 && isInitial) {
-            HpOpponent.value = HpOpponent.value - 35
-            return HpOpponent.value
+            hpOpponent.value = hpOpponent.value - 35
+            return hpOpponent.value
         }
         if (shift === 40 && isInitial) {
-            HpOpponent.value = HpOpponent.value - 40
-            return HpOpponent.value
+            hpOpponent.value = hpOpponent.value - 40
+            return hpOpponent.value
         }
         if (shift === 45 && isInitial) {
-            HpOpponent.value = HpOpponent.value - 45
-            return HpOpponent.value
+            hpOpponent.value = hpOpponent.value - 45
+            return hpOpponent.value
         }
         if (!isInitial) {
-            HpOpponent.value = 180
-            return HpOpponent.value
+            hpOpponent.value = 180
+            return hpOpponent.value
         }
     },
 )
 
 watch(
-    () => HpOpponent.value,
+    () => hpOpponent.value,
     (newShith) => {
-        if (newShith < 0) return (HpOpponent.value = 0)
+        if (newShith < 0) {
+            console.log("оппонент стал 0")
+            return (hpOpponent.value = 0)
+        }
     },
 )
 </script>
 
 <template>
     <div class="progress-bar-frame">
-        <div class="progress-bar" :style="{ width: HpOpponent + 'px' }"></div>
+        <div class="progress-bar" :style="{ width: hpOpponent + 'px' }"></div>
     </div>
 </template>
 

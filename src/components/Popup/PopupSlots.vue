@@ -9,7 +9,7 @@ const props = defineProps({
         required: false,
         default: false,
     },
-    win: {
+    gameResult: {
         type: String,
         required: false,
         default: 'draw',
@@ -44,21 +44,21 @@ onBeforeUnmount(() => {
 <template>
     <div v-if="isOpen" class="backdrop" @mousedown="close">
         <div class="popup" @mousedown.stop>
-            <h2>{{ win === 'draw' ? 'Ничья!' : 'Победа:' }}</h2>
+            <h2>{{ gameResult === 'draw' ? 'Ничья!' : 'Победа:' }}</h2>
             <hr />
-            <template v-if="win === 'person'">
+            <template v-if="gameResult === 'person'">
                 <game-person>
                     <template v-slot:image></template>
                     <template v-slot:bar></template>
                 </game-person>
             </template>
-            <template v-else-if="win === 'opponent'">
+            <template v-else-if="gameResult === 'opponent'">
                 <game-opponent>
                     <template v-slot:image></template>
                     <template v-slot:bar></template>
                 </game-opponent>
             </template>
-            <template v-else-if="win === 'draw'">
+            <template v-else-if="gameResult === 'draw'">
                 <div class="draw">
                     <game-person>
                         <template v-slot:image></template>
