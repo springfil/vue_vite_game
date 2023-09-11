@@ -40,6 +40,7 @@ const props = defineProps({
     border-radius: 12px;
     width: 500px;
     align-items: center;
+    font-family: 'Montserrat';
     font-size: 14px;
     list-style-type: none;
     text-align: center;

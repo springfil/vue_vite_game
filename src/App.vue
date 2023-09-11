@@ -38,11 +38,6 @@ provide("isInitialWidth", isInitialWidth)
     <popup-init />
 </template>
 
-<style>
-    @import './styles/transition.css';
-    @import './styles/fonts.css';
-</style>
-
 <style scoped>
 .wrapper {
     max-width: 1000px;
@@ -58,8 +53,8 @@ provide("isInitialWidth", isInitialWidth)
 }
 
 .app {
-    font-family: 'Rubik Iso', cursive;
-    letter-spacing: 2px;
+    font-family: 'Rubik Bold';
+    letter-spacing: 1.8px;
     text-align: center;
     margin-top: 5px;
 }

@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Rubik Bold';
+    src:
+        local('RubikMonoOne-Regular'),
+        url(./RubikMonoOne-Regular.ttf) format('truetype');
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Rubik Moon';
+    src:
+        local('RubikMoonrocks-Regular'),
+        url(./RubikMoonrocks-Regular.ttf) format('truetype');
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src:
+        local('Montserrat-VariableFont_wght'),
+        url(./Montserrat-VariableFont_wght.ttf) format('truetype');
+    font-style: normal;
+}
+
