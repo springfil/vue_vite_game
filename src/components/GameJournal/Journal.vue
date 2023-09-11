@@ -1,6 +1,29 @@
+<script setup>
+import { defineProps, ref, watch } from 'vue'
+
+const props = defineProps({
+    log: {
+        type: Array,
+        required: true,
+    },
+})
+
+const isResizeEnabled = ref(false)
+
+watch(
+    () => props.log.length,
+    (newLength) => {
+        isResizeEnabled.value = newLength === 3
+    },
+)
+</script>
 <template>
     <div class="journal">
-        <transition-group name="slide-fade" tag="ul" class="log-container">
+        <transition-group
+            name="slide-fade"
+            tag="ul"
+            class="log-container"
+            :style="{ resize: isResizeEnabled ? 'vertical' : 'none' }">
             <li v-for="entry in log" :key="entry.time" class="log-entry">
                 <template v-if="entry.isNewGame">
                     Вы начали заново в {{ entry.time }}
@@ -14,17 +37,6 @@
         </transition-group>
     </div>
 </template>
-
-<script setup>
-import { defineProps } from 'vue'
-
-const props = defineProps({
-    log: {
-        type: Array,
-        required: true,
-    },
-})
-</script>
 
 <style scoped>
 .journal {
@@ -48,8 +60,9 @@ const props = defineProps({
 }
 .log-container {
     display: inline-block;
-    max-height: 74px;
     overflow-y: auto;
     overflow-x: hidden;
+    height: 74px;
+    max-height: 148px;
 }
 </style>
