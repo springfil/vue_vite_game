@@ -38,7 +38,7 @@ const props = defineProps({
     margin-bottom: 2px;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 12px;
-    width: 500px;
+    width: 700px;
     align-items: center;
     font-family: 'Montserrat';
     font-size: 14px;
