@@ -9,7 +9,7 @@ export default function useGameInit(numberOfCells) {
     const init = () => {
         fields.value = []
 
-        for (let i = 0; i < numberOfCells; i++) {
+        for (let i = 0; i < numberOfCells.value; i++) {
             fields.value.push({
                 id: i,
                 clicked: false,

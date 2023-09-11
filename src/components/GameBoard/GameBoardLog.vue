@@ -28,11 +28,11 @@ watch(
 <template>
     <div class="board-log">
         <p class="difficult">
-            Множитель атаки <strong>X*{{ multiplier }}</strong>
+            Множитель атаки X*{{ multiplier }}
         </p>
         <transition name="slide-up">
-            <p class="next" v-if="isNext">УСИЛЕНИЕ</p>
-            <p class="reset" v-else-if="isReset">БАЗОВАЯ АТАКА</p>
+            <p class="next" v-if="isNext"> - Усиление - </p>
+            <p class="reset" v-else-if="isReset"> - Базовая атака - </p>
         </transition>
     </div>
 </template>
@@ -40,5 +40,13 @@ watch(
 <style scoped>
 .board-log {
     height: 72px;
+}
+.difficult{
+    font-size: 14px;
+}
+
+.reset,
+.next{
+    font-size: 12px;
 }
 </style>

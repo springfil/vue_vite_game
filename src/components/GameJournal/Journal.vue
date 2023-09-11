@@ -13,7 +13,7 @@ const isResizeEnabled = ref(false)
 watch(
     () => props.log.length,
     (newLength) => {
-        isResizeEnabled.value = newLength === 3
+        isResizeEnabled.value = newLength >= 3
     },
 )
 </script>

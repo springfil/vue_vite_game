@@ -30,7 +30,7 @@ export default function useGameStart(
         gameStatus.value = GAME_STATUS.PREVIEW
 
         for (let i = 0; i < difficult.value; ) {
-            const index = getRandom(0, numberOfCells - 1)
+            const index = getRandom(0, numberOfCells.value - 1)
 
             if (fields.value[index].value === FIELD.FILLED) {
                 continue
