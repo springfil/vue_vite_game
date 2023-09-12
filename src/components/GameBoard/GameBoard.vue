@@ -1,5 +1,5 @@
 <script setup>
-import { ref, inject, watchEffect } from 'vue'
+import { ref, inject, watchEffect, watch } from 'vue'
 import GameBoardLog from '@/components/GameBoard/GameBoardLog.vue'
 import BoardItem from '@/components/GameBoard/BoardItem.vue'
 import useGameInit from '@/composable/useGameInit'
@@ -15,7 +15,7 @@ const isInitialWidth = inject('isInitialWidth')
 
 const updateData = () => {
     data.value = difficult.value
-    console.log(difficult.value)
+    // console.log(difficult.value)
 }
 
 const store = useProgressBar()
@@ -25,7 +25,7 @@ const gameStatus = ref(GAME_STATUS.NONE)
 
 const { difficult, fields, init } = useGameInit(numberOfCells)
 
-const { start, canStartGame, canReset } = useGameStart(
+const { start, canStartGame, canReset, canResize, rerolCount } = useGameStart(
     init,
     fields,
     difficult,
@@ -48,28 +48,29 @@ const reset = () => {
     hpLimit.value = true
     isInitialWidth.value = false
     canReset.value = false
+    canResize.value = true
+    gameStatus.value = GAME_STATUS.NONE
+    rerolCount.value = 1
 }
 
-const fieldSizeText = ref('5 x 5')
-
+const fieldSize = ref('5 x 5')
 const toggleFieldSize = () => {
     if (numberOfCells.value === NUMBER_OF_CEILS.SMALL_FIELD) {
         numberOfCells.value = NUMBER_OF_CEILS.MEDIUM_FIELD
-        fieldSizeText.value = '6 x 6'
+        fieldSize.value = '6 x 6'
         init()
     } else if (numberOfCells.value === NUMBER_OF_CEILS.MEDIUM_FIELD) {
         numberOfCells.value = NUMBER_OF_CEILS.LARGE_FIELD
-        fieldSizeText.value = '7 x 7'
+        fieldSize.value = '7 x 7'
         init()
     } else if (numberOfCells.value === NUMBER_OF_CEILS.LARGE_FIELD) {
         numberOfCells.value = NUMBER_OF_CEILS.SMALL_FIELD
-        fieldSizeText.value = '5 x 5'
+        fieldSize.value = '5 x 5'
         init()
     }
 }
 
 const boardWidth = ref(250)
-
 watchEffect(() => {
     if (numberOfCells.value === NUMBER_OF_CEILS.SMALL_FIELD) {
         boardWidth.value = 250
@@ -81,6 +82,20 @@ watchEffect(() => {
         boardWidth.value = 350
     }
 })
+
+const startButton = ref('Старт')
+watch(gameStatus, (newStatus) => {
+    console.log('gameStatus - ', newStatus)
+    if (
+        newStatus === GAME_STATUS.NONE ||
+        newStatus === GAME_STATUS.RESET
+    ) {
+        startButton.value = 'Старт'
+    } else {
+        startButton.value = 'Рерол'
+    }
+})
+
 </script>
 
 <template>
@@ -102,11 +117,14 @@ watchEffect(() => {
 
             <div class="btn-panel">
                 <button class="btn" @click="start" :disabled="!canStartGame">
-                    Старт
+                    {{ startButton }}
                 </button>
 
-                <button class="btn field-size" @click="toggleFieldSize">
-                    {{ fieldSizeText }}
+                <button
+                    class="btn field-size"
+                    @click="toggleFieldSize"
+                    :disabled="!canResize">
+                    {{ fieldSize }}
                 </button>
 
                 <button class="btn reset" @click="reset" :disabled="!canReset">
@@ -143,10 +161,13 @@ watchEffect(() => {
     font-family: 'Rubik Moon';
 }
 
+.btn + .field-size:hover {
+    background: rgba(206, 11, 11, 0.4);
+}
+
 .btn + .reset:hover {
     background: rgba(11, 24, 206, 0.4);
 }
-
 .btn:hover {
     background: rgb(230, 50, 215, 0.5);
 }
