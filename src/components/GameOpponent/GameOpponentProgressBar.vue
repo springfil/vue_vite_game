@@ -61,8 +61,7 @@ watch(
     () => hpOpponent.value,
     (newShith) => {
         if (newShith < 0) {
-            console.log("оппонент стал 0")
-            return (hpOpponent.value = 0)
+            hpOpponent.value = 0
         }
     },
 )

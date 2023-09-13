@@ -7,7 +7,7 @@ import small from '@/assets/GamePerson/nezuko_small.jpg'
 import medium from '@/assets/GamePerson/nezuko_medium.jpg'
 import high from '@/assets/GamePerson/nezuko_high.jpg'
 
-const difficult = inject('data')
+const difficult = inject('difficultToProcess')
 const getProgressBarWidth = ref({})
 
 const getImageUrl = computed(() => {
@@ -23,30 +23,11 @@ const getImageUrl = computed(() => {
     }
 })
 
-
 watch(difficult, (newDifficult) => {
-    if (newDifficult === 2) {
-        return (getProgressBarWidth.value = { shift: 10 })
-    }
-
-    if (newDifficult === 4) {
-        return (getProgressBarWidth.value = { shift: 15 })
-    }
-
-    if (newDifficult === 6) {
-        return (getProgressBarWidth.value = { shift: 20 })
-    }
-
-    if (newDifficult === 8) {
-        return (getProgressBarWidth.value = { shift: 25 })
-    }
-
-    if (newDifficult === 10) {
-        return (getProgressBarWidth.value = { shift: 30 })
-    }
-
-    if (![2, 4, 6, 8, 10].includes(newDifficult)) {
-        return (getProgressBarWidth.value = { shift: 35 })
+    if ([2, 4, 6, 8, 10].includes(newDifficult)) {
+        getProgressBarWidth.value = { shift: (newDifficult / 2 + 1) * 5 };
+    } else {
+        getProgressBarWidth.value = { shift: 35 };
     }
 })
 

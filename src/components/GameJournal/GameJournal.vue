@@ -8,8 +8,8 @@
 import Journal from '@/components/GameJournal/Journal.vue'
 import { ref, inject, watch, computed } from 'vue'
 
-const damageMultiplierPerson = inject('data')
-const damageMultiplierOpponent = inject('data2')
+const damageMultiplierPerson = inject('difficultToProcess')
+const damageMultiplierOpponent = inject('difficultToJournal')
 const isInitialWidth = inject('isInitialWidth')
 
 const log = ref([])
