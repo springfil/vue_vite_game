@@ -9,9 +9,9 @@ const { hpPerson, hpOpponent } = storeToRefs(store)
 
 const isPopupOpen = ref(false)
 
-const popupConfirmed = () => {
-    isPopupOpen.value = false
-}
+// const popupConfirm = () => {
+//     isPopupOpen.value = false
+// }
 
 const gameResult = computed(() => {
     if (hpPerson.value === 0 && hpOpponent.value > 0) return 'opponent'
@@ -32,7 +32,6 @@ watch([hpPerson, hpOpponent], ([remainingHpPerson, remainingHpOpponent]) => {
             <popup-slots
                 :game-result="gameResult"
                 :is-open="isPopupOpen"
-                @confirm-popup="popupConfirmed"
                 @close-popup="isPopupOpen = false">
             </popup-slots>
         </transition>
@@ -42,3 +41,4 @@ watch([hpPerson, hpOpponent], ([remainingHpPerson, remainingHpOpponent]) => {
 <style scoped>
 
 </style>
+        <!-- @confirm-popup="popupConfirm" -->

@@ -16,7 +16,7 @@ const props = defineProps({
     },
 })
 
-const emit = defineEmits(['confirm-popup', 'close-popup'])
+const emit = defineEmits(['close-popup'])
 
 const handleKeydown = (e) => {
     if (props.isOpen && e.key === 'Escape') {
@@ -26,10 +26,6 @@ const handleKeydown = (e) => {
 
 const close = () => {
     emit('close-popup')
-}
-
-const confirm = () => {
-    emit('confirm-popup')
 }
 
 onMounted(() => {
@@ -73,9 +69,8 @@ onBeforeUnmount(() => {
             </template>
             <hr />
             <div class="footer">
-                <slot name="actions" :close="close" :confirm="confirm">
-                    <button @click="close">Отмена</button>
-                    <button @click="confirm">Ok</button>
+                <slot name="actions" :close="close" >
+                <button class="btn" @click="close" >Спасибо</button>
                 </slot>
             </div>
         </div>
@@ -93,7 +88,6 @@ onBeforeUnmount(() => {
     border-radius: 10px;
     text-align: center;
 }
-
 .popup h1 {
     text-align: center;
     margin: 0;
@@ -121,5 +115,25 @@ onBeforeUnmount(() => {
 
 .space {
     width: 20px; 
+}
+
+.footer {
+    text-align: center; 
+}
+.btn {
+    background: rgba(206, 200, 200, 0.349);
+    color: black;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 30px;
+    margin: 10px 5px;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Rubik';
+    font-size: 16px;
+}
+
+.btn:hover {
+    background: rgba(73, 223, 36, 0.4);
 }
 </style>

@@ -6,26 +6,28 @@ import GameOpponent from '@/components/GameOpponent/GameOpponent.vue'
 import GameJournal from '@/components/GameJournal/GameJournal.vue'
 import PopupInit from '@/components/Popup/PopupInit.vue'
 
-const data = ref(1)
-provide('data', data)
+const difficultToProcess = ref(1)
+provide('difficultToProcess', difficultToProcess)
 
-const data2 = ref(1)
-provide('data2', data2)
-//inject gameOpponentProgressBar gamePersonProgressBar gameBoard
+const difficultToJournal = ref(1)
+provide('difficultToJournal', difficultToJournal)
+
 const isInitialWidth = ref(true)
 provide("isInitialWidth", isInitialWidth)
 </script>
 
 <template>
     <div class="wrapper">
+        <div class="centered-content">
+            <img class="logo" src="./assets/logo.png" alt="Vue logo" />
+            <h2 class="h2">Коробка удачи</h2>
+        </div>
         <div class="container">
             <div class="game-person">
                 <game-person />
             </div>
             <div class="game-board">
                 <div class="app">
-                    <img class="logo" src="./assets/logo.png" alt="Vue logo" />
-                    <h2 class="h2">Коробка удачи</h2>
                     <game-board />
                 </div>
             </div>
@@ -44,11 +46,19 @@ provide("isInitialWidth", isInitialWidth)
     padding-left: 15px;
     padding-right: 15px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.centered-content {
+    text-align: center;
+    font-family: 'Rubik Bold'
 }
 .container {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-between;
 }
 

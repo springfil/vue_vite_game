@@ -9,10 +9,10 @@
 }
 
 @font-face {
-    font-family: 'Rubik Moon';
+    font-family: 'Rubik';
     src:
-        local('RubikMoonrocks-Regular'),
-        url(./RubikMoonrocks-Regular.ttf) format('truetype');
+        local('RubikWetPaint-Regular'),
+        url(./RubikWetPaint-Regular.ttf) format('truetype');
     font-style: normal;
     font-weight: 400;
     font-display: swap;

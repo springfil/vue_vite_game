@@ -10,11 +10,11 @@ import { NUMBER_OF_CEILS } from '@/constants/NUMBER_OF_CEILS.JS'
 import { useProgressBar } from '@/store/progressBar'
 import { storeToRefs } from 'pinia'
 
-const data = inject('data')
+const difficultToProcess = inject('difficultToProcess')
 const isInitialWidth = inject('isInitialWidth')
 
 const updateData = () => {
-    data.value = difficult.value
+    difficultToProcess.value = difficult.value
     // console.log(difficult.value)
 }
 
@@ -158,7 +158,8 @@ watch(gameStatus, (newStatus) => {
     margin: 10px 5px;
     cursor: pointer;
     outline: none;
-    font-family: 'Rubik Moon';
+    font-family: 'Rubik';
+    font-size: 16px;
 }
 
 .btn + .field-size:hover {
