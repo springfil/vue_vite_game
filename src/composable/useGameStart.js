@@ -31,7 +31,7 @@ export default function useGameStart(
     const increaseRerolCount = () => {
         if (rerolCount.value < 3) {
             rerolCount.value = rerolCount.value + 1
-            console.log('rerolCount.value - ', rerolCount.value)
+            // console.log('rerolCount.value - ', rerolCount.value)
         }
     }
 
@@ -64,7 +64,7 @@ export default function useGameStart(
     })
 
     watch(gameStatus, (newStatus) => {
-        console.log(newStatus)
+        //console.log(newStatus)
         if (newStatus === GAME_STATUS.NEXT || newStatus === GAME_STATUS.RESET) {
             rerolCount.value = 0
         }

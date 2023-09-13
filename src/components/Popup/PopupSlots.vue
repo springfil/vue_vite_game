@@ -87,6 +87,7 @@ onBeforeUnmount(() => {
     background-color: white;
     border-radius: 10px;
     text-align: center;
+    font-family: 'Rubik'
 }
 .popup h1 {
     text-align: center;
@@ -136,4 +137,5 @@ onBeforeUnmount(() => {
 .btn:hover {
     background: rgba(73, 223, 36, 0.4);
 }
+
 </style>

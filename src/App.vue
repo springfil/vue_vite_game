@@ -46,9 +46,9 @@ provide("isInitialWidth", isInitialWidth)
     padding-left: 15px;
     padding-right: 15px;
     margin: 0 auto;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
 }
 
 .centered-content {

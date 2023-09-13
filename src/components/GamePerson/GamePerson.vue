@@ -25,9 +25,9 @@ const getImageUrl = computed(() => {
 
 watch(difficult, (newDifficult) => {
     if ([2, 4, 6, 8, 10].includes(newDifficult)) {
-        getProgressBarWidth.value = { shift: (newDifficult / 2 + 1) * 5 };
+        getProgressBarWidth.value = { shift: (newDifficult / 2 + 1) * 5 }
     } else {
-        getProgressBarWidth.value = { shift: 35 };
+        getProgressBarWidth.value = { shift: 35 }
     }
 })
 

@@ -9,10 +9,6 @@ const { hpPerson, hpOpponent } = storeToRefs(store)
 
 const isPopupOpen = ref(false)
 
-// const popupConfirm = () => {
-//     isPopupOpen.value = false
-// }
-
 const gameResult = computed(() => {
     if (hpPerson.value === 0 && hpOpponent.value > 0) return 'opponent'
     if (hpOpponent.value === 0 && hpPerson.value > 0) return 'person'

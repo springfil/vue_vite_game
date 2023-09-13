@@ -85,7 +85,7 @@ watchEffect(() => {
 
 const startButton = ref('Старт')
 watch(gameStatus, (newStatus) => {
-    console.log('gameStatus - ', newStatus)
+   // console.log('gameStatus - ', newStatus)
     if (
         newStatus === GAME_STATUS.NONE ||
         newStatus === GAME_STATUS.RESET

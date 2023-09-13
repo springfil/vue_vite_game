@@ -18,40 +18,12 @@ const { hpOpponent } = storeToRefs(store)
 watch(
     [() => props.progressBarWidth.shift, () => isInitialWidth.value],
     ([shift, isInitial]) => {
-        if (shift === 10 && isInitial) {
-            hpOpponent.value = hpOpponent.value - 10
-            return hpOpponent.value
-        }
-        if (shift === 15 && isInitial) {
-            hpOpponent.value = hpOpponent.value - 15
-            return hpOpponent.value
-        }
-        if (shift === 20 && isInitial) {
-            hpOpponent.value = hpOpponent.value - 20
-            return hpOpponent.value
-        }
-        if (shift === 25 && isInitial) {
-            hpOpponent.value = hpOpponent.value - 25
-            return hpOpponent.value
-        }
-        if (shift === 30 && isInitial) {
-            hpOpponent.value = hpOpponent.value - 30
-            return hpOpponent.value
-        }
-        if (shift === 35 && isInitial) {
-            hpOpponent.value = hpOpponent.value - 35
-            return hpOpponent.value
-        }
-        if (shift === 40 && isInitial) {
-            hpOpponent.value = hpOpponent.value - 40
-            return hpOpponent.value
-        }
-        if (shift === 45 && isInitial) {
-            hpOpponent.value = hpOpponent.value - 45
-            return hpOpponent.value
-        }
         if (!isInitial) {
             hpOpponent.value = 180
+            return hpOpponent.value
+        }
+        if ([10, 15, 20, 25, 30, 35, 40].includes(shift) && isInitial) {
+            hpOpponent.value = hpOpponent.value - shift
             return hpOpponent.value
         }
     },
