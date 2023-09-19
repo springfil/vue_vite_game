@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { provide, ref } from 'vue'
 import GameBoard from '@/components/GameBoard/GameBoard.vue'
 import GamePerson from '@/components/GamePerson/GamePerson.vue'
