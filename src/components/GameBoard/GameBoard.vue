@@ -6,7 +6,7 @@ import useGameInit from '@/composable/useGameInit'
 import useGameStart from '@/composable/useGameStart'
 import useGameProcess from '@/composable/useGameProcess'
 import { GAME_STATUS } from '@/constants/GAME_STATUS'
-import { NUMBER_OF_CEILS } from '@/constants/NUMBER_OF_CEILS.JS'
+import { NUMBER_OF_CEILS } from '@/constants/NUMBER_OF_CEILS'
 import { useProgressBar } from '@/store/progressBar'
 import { storeToRefs } from 'pinia'
 
