@@ -1,19 +1,20 @@
 import { FIELD } from '@/constants/FIELD'
+import { FieldType } from '@/types/fieldTypes'
 import { GAME_STATUS } from '@/constants/GAME_STATUS'
 import { GAME_SPEED } from '@/constants/GAME_SPEED'
-import { computed, inject, ref, watch } from 'vue'
+import { computed, inject, ref, watch, Ref } from 'vue' //
 import { getRandom } from '@/utils/getRandom'
 
 export default function useGameStart(
-    init,
-    fields,
-    difficult,
-    numberOfCells,
-    gameStatus,
-    updateData,
+    init: () => void,
+    fields: Ref<Array<FieldType>>,
+    difficult: Ref<number>,
+    numberOfCells: Ref<number>,
+    gameStatus: Ref<GAME_STATUS>,
+    updateData:() => void,
 ) {
     let timerId = null
-    const isInitialWidth = inject('isInitialWidth')
+    const isInitialWidth = inject('isInitialWidth') as Ref<boolean>
     const canReset = ref(false)
     const canResize = ref(true)
     const rerolCount = ref(1)
@@ -48,11 +49,12 @@ export default function useGameStart(
             fields.value[index].value = FIELD.FILLED
             i = i + 1
         }
-
+        
         clearTimeout(timerId)
+
         timerId = setTimeout(() => {
             gameStatus.value = GAME_STATUS.STARTED
-        }, GAME_SPEED)
+        }, GAME_SPEED) 
     }
 
     const canStartGame = computed(() => {

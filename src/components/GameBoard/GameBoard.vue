@@ -1,5 +1,5 @@
-<script setup>
-import { ref, inject, watchEffect, watch } from 'vue'
+<script setup lang="ts">
+import { Ref, ref, inject, watchEffect, watch } from 'vue'
 import GameBoardLog from '@/components/GameBoard/GameBoardLog.vue'
 import BoardItem from '@/components/GameBoard/BoardItem.vue'
 import useGameInit from '@/composable/useGameInit'
@@ -10,8 +10,8 @@ import { NUMBER_OF_CEILS } from '@/constants/NUMBER_OF_CEILS'
 import { useProgressBar } from '@/store/progressBar'
 import { storeToRefs } from 'pinia'
 
-const difficultToProcess = inject('difficultToProcess')
-const isInitialWidth = inject('isInitialWidth')
+const difficultToProcess  = inject('difficultToProcess') as Ref<number>
+const isInitialWidth = inject('isInitialWidth') as Ref<boolean>
 
 const updateData = () => {
     difficultToProcess.value = difficult.value

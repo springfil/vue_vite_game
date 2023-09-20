@@ -1,10 +1,11 @@
-import { Ref , ref, onBeforeMount, watch } from 'vue'
-import { FIELD } from '@/constants/FIELD'
+import {  Ref , ref, onBeforeMount, watch } from 'vue' //
 import { DEFAULT_DIFFICULT, MAX_DIFFICULT } from '@/constants/DIFFICULT'
+import { FIELD } from '@/constants/FIELD'
+import { FieldType } from '@/types/fieldTypes'
 
 export default function useGameInit(numberOfCells: Ref<number>) {
     const difficult = ref(DEFAULT_DIFFICULT)
-    const fields = ref<Array<{ id: number; clicked: boolean; value: number }>>([])
+    const fields = ref<Array< FieldType >>([])
 
     const init = () => {
         fields.value = []

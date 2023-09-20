@@ -6,13 +6,15 @@ import GameOpponent from '@/components/GameOpponent/GameOpponent.vue'
 import GameJournal from '@/components/GameJournal/GameJournal.vue'
 import PopupInit from '@/components/Popup/PopupInit.vue'
 
-const difficultToProcess = ref(1)
+
+ 
+const difficultToProcess = ref(1) 
 provide('difficultToProcess', difficultToProcess)
 
-const difficultToJournal = ref(1)
+const difficultToJournal = ref(1) 
 provide('difficultToJournal', difficultToJournal)
 
-const isInitialWidth = ref(true)
+const isInitialWidth = ref(true) 
 provide("isInitialWidth", isInitialWidth)
 </script>
 

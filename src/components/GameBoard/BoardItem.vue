@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { computed, defineProps, defineEmits } from 'vue'
 import { GAME_STATUS } from '@/constants/GAME_STATUS'
 import { FIELD } from '@/constants/FIELD'
@@ -15,7 +15,11 @@ const props = defineProps({
     },
 })
 
-const emit = defineEmits(['select-field'])
+//const emit = defineEmits(['select-field'])
+
+const emit = defineEmits<{
+    (e: 'select-field', id: number): void
+}>()
 
 const isPreviewActive = computed(() => {
     return (
@@ -44,7 +48,7 @@ const boardItemClasses = computed(() => {
     return classes
 })
 
-const select = (id) => {
+const select = (id: number) => {
     if (props.gameStatus === GAME_STATUS.STARTED) {
         emit('select-field', id)
     }

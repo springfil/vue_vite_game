@@ -1,13 +1,19 @@
 import { FIELD } from '@/constants/FIELD'
 import { GAME_STATUS } from '@/constants/GAME_STATUS'
 import { DEFAULT_DIFFICULT } from '@/constants/DIFFICULT'
-import { computed, nextTick } from 'vue'
+import { computed, nextTick, Ref } from 'vue' //
 import { GAME_SPEED } from '@/constants/GAME_SPEED'
+import { FieldType } from '@/types/fieldTypes'
 
-export default function useGameProcess(fields, gameStatus, difficult, start) {
+export default function useGameProcess(
+    fields: Ref<Array<FieldType>>,
+    gameStatus: Ref<GAME_STATUS>,
+    difficult: Ref<number>,
+    start: () => void
+) {
     let timerId = null
 
-    const selectField = (id) => {
+    const selectField = (id: number) => {
         const index = fields.value.findIndex((field) => {
             return field.id === id
         })
