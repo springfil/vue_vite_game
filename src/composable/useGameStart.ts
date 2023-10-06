@@ -2,8 +2,9 @@ import { FIELD } from '@/constants/FIELD'
 import { FieldType } from '@/types/fieldTypes'
 import { GAME_STATUS } from '@/constants/GAME_STATUS'
 import { GAME_SPEED } from '@/constants/GAME_SPEED'
-import { computed, inject, ref, watch, Ref } from 'vue' //
+import { computed, ref, watch, Ref } from 'vue' 
 import { getRandom } from '@/utils/getRandom'
+import { injectStrict } from '@/utils/injectStrict'
 
 export default function useGameStart(
     init: () => void,
@@ -13,8 +14,8 @@ export default function useGameStart(
     gameStatus: Ref<GAME_STATUS>,
     updateData:() => void,
 ) {
-    let timerId = null
-    const isInitialWidth = inject('isInitialWidth') as Ref<boolean>
+    let timerId: NodeJS.Timeout
+    const isInitialWidth = injectStrict<Ref<boolean>>('isInitialWidth');
     const canReset = ref(false)
     const canResize = ref(true)
     const rerolCount = ref(1)

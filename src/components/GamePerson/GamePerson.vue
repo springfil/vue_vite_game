@@ -1,13 +1,14 @@
-<script setup>
-import { computed, inject, onMounted, watch, ref } from 'vue'
+<script setup lang="ts">
+import { computed, onMounted, watch, ref, Ref } from 'vue'
 import GamePersonImage from '@/components/GamePerson/GamePersonImage.vue'
 import GamePersonProgressBar from '@/components/GamePerson/GamePersonProgressBar.vue'
-import { loadImage } from '@/utils/loadImage.js'
+import { loadImage } from '@/utils/loadImage'
+import { injectStrict } from '@/utils/injectStrict'
 import small from '@/assets/GamePerson/nezuko_small.jpg'
 import medium from '@/assets/GamePerson/nezuko_medium.jpg'
 import high from '@/assets/GamePerson/nezuko_high.jpg'
 
-const difficult = inject('difficultToProcess')
+const difficult = injectStrict<Ref<number>>('difficultToProcess');
 const getProgressBarWidth = ref({})
 
 const getImageUrl = computed(() => {

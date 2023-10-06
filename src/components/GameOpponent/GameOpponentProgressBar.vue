@@ -1,5 +1,6 @@
-<script setup>
-import { defineProps, watch, inject } from 'vue'
+<script setup lang='ts'>
+import { defineProps, watch, Ref } from 'vue'
+import { injectStrict } from '@/utils/injectStrict'
 import { useProgressBar } from '@/store/progressBar'
 import { storeToRefs } from 'pinia'
 
@@ -10,7 +11,7 @@ const props = defineProps({
     },
 })
 
-const isInitialWidth = inject('isInitialWidth')
+const isInitialWidth = injectStrict<Ref<boolean>>('isInitialWidth')
 
 const store = useProgressBar()
 const { hpOpponent } = storeToRefs(store)

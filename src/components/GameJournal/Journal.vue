@@ -17,6 +17,7 @@ watch(
     },
 )
 </script>
+
 <template>
     <div class="journal">
         <transition-group

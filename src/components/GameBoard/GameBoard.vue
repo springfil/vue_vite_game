@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Ref, ref, inject, watchEffect, watch } from 'vue'
+import { Ref, ref, watchEffect, watch } from 'vue'
 import GameBoardLog from '@/components/GameBoard/GameBoardLog.vue'
 import BoardItem from '@/components/GameBoard/BoardItem.vue'
 import useGameInit from '@/composable/useGameInit'
@@ -9,9 +9,10 @@ import { GAME_STATUS } from '@/constants/GAME_STATUS'
 import { NUMBER_OF_CEILS } from '@/constants/NUMBER_OF_CEILS'
 import { useProgressBar } from '@/store/progressBar'
 import { storeToRefs } from 'pinia'
+import { injectStrict } from '@/utils/injectStrict'
 
-const difficultToProcess  = inject('difficultToProcess') as Ref<number>
-const isInitialWidth = inject('isInitialWidth') as Ref<boolean>
+const difficultToProcess = injectStrict<Ref<number>>('difficultToProcess');
+const isInitialWidth = injectStrict<Ref<boolean>>('isInitialWidth');
 
 const updateData = () => {
     difficultToProcess.value = difficult.value

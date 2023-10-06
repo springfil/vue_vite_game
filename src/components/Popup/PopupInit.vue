@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref, computed, watch } from 'vue'
 import PopupSlots from '@/components/Popup/PopupSlots.vue'
 import { useProgressBar } from '@/store/progressBar'
@@ -38,3 +38,4 @@ watch([hpPerson, hpOpponent], ([remainingHpPerson, remainingHpOpponent]) => {
 
 </style>
         <!-- @confirm-popup="popupConfirm" -->
+

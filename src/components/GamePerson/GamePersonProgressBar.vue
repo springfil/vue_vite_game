@@ -1,6 +1,7 @@
-<script setup>
-import { defineProps, computed, inject, watch } from 'vue'
+<script setup lang="ts">
+import { defineProps, computed, watch, Ref } from 'vue'
 import { getRandom } from '@/utils/getRandom'
+import { injectStrict } from '@/utils/injectStrict'
 import { useProgressBar } from '@/store/progressBar'
 import { storeToRefs } from 'pinia'
 
@@ -11,8 +12,8 @@ const props = defineProps({
     },
 })
 
-const difficultToJournal = inject('difficultToJournal')
-const isInitialWidth = inject('isInitialWidth')
+const difficultToJournal = injectStrict<Ref<number>>('difficultToJournal')
+const isInitialWidth = injectStrict<Ref<boolean>>('isInitialWidth')
 
 const store = useProgressBar()
 const { hpPerson, hpLimit } = storeToRefs(store)
@@ -29,6 +30,8 @@ const minShift = computed(() => {
     if (props.progressBarWidth.shift === 30) return 20
 
     if (props.progressBarWidth.shift === 35) return 30
+
+    return 5
 })
 
 const maxShift = computed(() => {
@@ -43,6 +46,8 @@ const maxShift = computed(() => {
     if (props.progressBarWidth.shift === 30) return 37
 
     if (props.progressBarWidth.shift === 35) return 45
+
+    return 10
 })
 
 const shifted = computed(() => {
@@ -76,7 +81,9 @@ watch(
     },
 )
 
-watch(shifted, (newHp, oldHp = 180) => {
+watch(
+    () => shifted.value,
+    (newHp, oldHp = 180) => {
     if (newHp) {
         difficultToJournal.value = oldHp - newHp
     }

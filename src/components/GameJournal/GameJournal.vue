@@ -4,15 +4,16 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Journal from '@/components/GameJournal/Journal.vue'
-import { ref, inject, watch, computed } from 'vue'
+import { ref, watch, computed, Ref } from 'vue'
+import { injectStrict } from '@/utils/injectStrict'
 
-const damageMultiplierPerson = inject('difficultToProcess')
-const damageMultiplierOpponent = inject('difficultToJournal')
-const isInitialWidth = inject('isInitialWidth')
+const damageMultiplierPerson = injectStrict<Ref<number>>('difficultToProcess')
+const damageMultiplierOpponent = injectStrict<Ref<number>>('difficultToJournal')
+const isInitialWidth = injectStrict<Ref<boolean>>('isInitialWidth')
 
-const log = ref([])
+const log: Ref<Array<{}>> = ref([])
 
 const damagePerson = computed(() => {
     if (damageMultiplierPerson.value === 2) {

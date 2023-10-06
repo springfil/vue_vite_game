@@ -11,7 +11,7 @@ export default function useGameProcess(
     difficult: Ref<number>,
     start: () => void
 ) {
-    let timerId = null
+    let timerId: NodeJS.Timeout 
 
     const selectField = (id: number) => {
         const index = fields.value.findIndex((field) => {
