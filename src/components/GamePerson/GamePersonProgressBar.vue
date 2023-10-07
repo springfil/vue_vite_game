@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed, watch, Ref } from 'vue'
+import { computed, watch, Ref, ref } from 'vue'
 import { getRandom } from '@/utils/getRandom'
 import { injectStrict } from '@/utils/injectStrict'
 import { useProgressBar } from '@/store/progressBar'
 import { storeToRefs } from 'pinia'
 
-interface Props{
-    progressBarWidth: {shift: number}
+interface Props {
+    progressBarWidth: { shift: number }
 }
 
 const props = defineProps<Props>()
@@ -17,42 +17,10 @@ const isInitialWidth = injectStrict<Ref<boolean>>('isInitialWidth')
 const store = useProgressBar()
 const { hpPerson, hpLimit } = storeToRefs(store)
 
-const minShift = computed(() => {
-    if (props.progressBarWidth.shift === 10) return 5
-
-    if (props.progressBarWidth.shift === 15) return 8
-
-    if (props.progressBarWidth.shift === 20) return 10
-
-    if (props.progressBarWidth.shift === 25) return 25
-
-    if (props.progressBarWidth.shift === 30) return 20
-
-    if (props.progressBarWidth.shift === 35) return 30
-
-    return 5
-})
-
-const maxShift = computed(() => {
-    if (props.progressBarWidth.shift === 10) return 10
-
-    if (props.progressBarWidth.shift === 15) return 16
-
-    if (props.progressBarWidth.shift === 20) return 25
-
-    if (props.progressBarWidth.shift === 25) return 25
-
-    if (props.progressBarWidth.shift === 30) return 37
-
-    if (props.progressBarWidth.shift === 35) return 45
-
-    return 10
-})
+const medianShift = ref(1)
 
 const shifted = computed(() => {
-    if (!hpLimit.value) {
-        return
-    }
+    if (!hpLimit.value) return
 
     if (!isInitialWidth.value) {
         hpPerson.value = 180
@@ -64,10 +32,22 @@ const shifted = computed(() => {
         isInitialWidth.value
     ) {
         hpPerson.value =
-            hpPerson.value - getRandom(minShift.value, maxShift.value)
+            hpPerson.value -
+            getRandom(medianShift.value - getRandom(0, 5), medianShift.value + getRandom(-7, 2))
         return hpPerson.value
     }
 })
+
+watch(
+    () => props.progressBarWidth.shift,
+    (newShift) => {
+        if ([10, 15, 20, 25, 30, 35].includes(newShift)) {
+            medianShift.value = newShift
+        } else {
+            medianShift.value = 10
+        }
+    },
+)
 
 watch(
     () => hpPerson.value,
@@ -83,16 +63,17 @@ watch(
 watch(
     () => shifted.value,
     (newHp, oldHp = 180) => {
-    if (newHp) {
-        difficultToJournal.value = oldHp - newHp
-    }
-    if (!newHp) {
-        difficultToJournal.value = -oldHp
-    }
-    console.log(
-        `difficultToJournal.value ${difficultToJournal.value} = oldHp ${oldHp} - newHp ${newHp}`,
-    )
-})
+        if (newHp) {
+            difficultToJournal.value = oldHp - newHp
+        }
+        if (!newHp) {
+            difficultToJournal.value = -oldHp
+        }
+        console.log(
+            `difficultToJournal.value ${difficultToJournal.value} = oldHp ${oldHp} - newHp ${newHp}`,
+        )
+    },
+)
 </script>
 
 <template>
