@@ -9,7 +9,12 @@ import medium from '@/assets/GamePerson/nezuko_medium.jpg'
 import high from '@/assets/GamePerson/nezuko_high.jpg'
 
 const difficult = injectStrict<Ref<number>>('difficultToProcess');
-const getProgressBarWidth = ref({})
+
+interface ProgressBarWidth {
+  shift: number;
+}    
+
+const getProgressBarWidth: Ref<ProgressBarWidth> = ref({ shift: 0 })
 
 const getImageUrl = computed(() => {
     switch (difficult.value) {

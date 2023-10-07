@@ -1,19 +1,14 @@
-<template>
-    <div>
-        <Journal :log="log" />
-    </div>
-</template>
-
 <script setup lang="ts">
 import Journal from '@/components/GameJournal/Journal.vue'
 import { ref, watch, computed, Ref } from 'vue'
 import { injectStrict } from '@/utils/injectStrict'
+import { LogEntry } from '@/components/GameJournal/logEntry';
 
 const damageMultiplierPerson = injectStrict<Ref<number>>('difficultToProcess')
 const damageMultiplierOpponent = injectStrict<Ref<number>>('difficultToJournal')
 const isInitialWidth = injectStrict<Ref<boolean>>('isInitialWidth')
-
-const log: Ref<Array<{}>> = ref([])
+  
+const log: Ref<Array<LogEntry>> = ref([])
 
 const damagePerson = computed(() => {
     if (damageMultiplierPerson.value === 2) {
@@ -57,3 +52,9 @@ const attack = () => {
 
 watch([damageMultiplierPerson, isInitialWidth], attack)
 </script>
+
+<template>
+    <div>
+        <Journal :log="log" />
+    </div>
+</template>

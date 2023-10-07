@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { defineProps, computed, watch, Ref } from 'vue'
+import { computed, watch, Ref } from 'vue'
 import { getRandom } from '@/utils/getRandom'
 import { injectStrict } from '@/utils/injectStrict'
 import { useProgressBar } from '@/store/progressBar'
 import { storeToRefs } from 'pinia'
 
-const props = defineProps({
-    progressBarWidth: {
-        type: Object,
-        required: true,
-    },
-})
+interface Props{
+    progressBarWidth: {shift: number}
+}
+
+const props = defineProps<Props>()
 
 const difficultToJournal = injectStrict<Ref<number>>('difficultToJournal')
 const isInitialWidth = injectStrict<Ref<boolean>>('isInitialWidth')

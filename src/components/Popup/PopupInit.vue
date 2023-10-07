@@ -37,5 +37,5 @@ watch([hpPerson, hpOpponent], ([remainingHpPerson, remainingHpOpponent]) => {
 <style scoped>
 
 </style>
-        <!-- @confirm-popup="popupConfirm" -->
+       
 

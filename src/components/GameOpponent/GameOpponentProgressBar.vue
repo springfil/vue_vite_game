@@ -1,15 +1,14 @@
 <script setup lang='ts'>
-import { defineProps, watch, Ref } from 'vue'
+import { watch, Ref } from 'vue'
 import { injectStrict } from '@/utils/injectStrict'
 import { useProgressBar } from '@/store/progressBar'
 import { storeToRefs } from 'pinia'
 
-const props = defineProps({
-    progressBarWidth: {
-        type: Object,
-        required: true,
-    },
-})
+interface Props{
+    progressBarWidth: {shift: number}
+}
+
+const props = defineProps<Props>()
 
 const isInitialWidth = injectStrict<Ref<boolean>>('isInitialWidth')
 

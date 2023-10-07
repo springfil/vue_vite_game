@@ -3,23 +3,19 @@ import { onMounted, onBeforeUnmount } from 'vue'
 import GamePerson from '@/components/GamePerson/GamePerson.vue'
 import GameOpponent from '@/components/GameOpponent/GameOpponent.vue'
 
-const props = defineProps({
-    isOpen: {
-        type: Boolean,
-        required: false,
-        default: false,
-    },
-    gameResult: {
-        type: String,
-        required: false,
-        default: 'draw',
-    },
+interface Props{
+    isOpen?: boolean
+    gameResult?: string 
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    isOpen: () => false,
+    gameResult: () => 'draw'
 })
 
 const emit = defineEmits<{
  (e: 'close-popup'): void  
 }>()
-
 
 const handleKeydown = (e: KeyboardEvent) => {
     if (props.isOpen && e.key === 'Escape') {

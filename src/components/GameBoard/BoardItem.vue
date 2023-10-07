@@ -1,19 +1,34 @@
 <script setup lang="ts">
-import { computed, defineProps, defineEmits } from 'vue'
+import { computed } from 'vue'
 import { GAME_STATUS } from '@/constants/GAME_STATUS'
 import { FIELD } from '@/constants/FIELD'
 
-const props = defineProps({
-    field: {
-        type: Object,
-        required: true,
-    },
-    gameStatus: {
-        type: Number,
-        required: false,
-        default: GAME_STATUS.NONE,
-    },
+interface Field {
+  value: number;
+  clicked: boolean;
+  id: number;
+}
+
+interface Props {
+  field: Field;
+  gameStatus?: number;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    gameStatus: () => GAME_STATUS.NONE
 })
+
+// const props = defineProps({
+//     field: {
+//         type: Object,
+//         required: true,
+//     },
+//     gameStatus: {
+//         type: Number,
+//         required: false,
+//         default: GAME_STATUS.NONE,
+//     },
+// })
 
 //const emit = defineEmits(['select-field'])
 

@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
 
-const props = defineProps({
-    imageUrl: {
-        type: String,
-        required: true,
-    },
-})
+interface Props {
+    imageUrl: string
+}
+
+defineProps<Props>()
+
 </script>
 
 <template>

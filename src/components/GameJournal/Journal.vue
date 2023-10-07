@@ -1,12 +1,12 @@
-<script setup>
-import { defineProps, ref, watch } from 'vue'
+<script setup lang="ts">
+import { ref, watch } from 'vue'
+import { LogEntry } from '@/components/GameJournal/logEntry';
 
-const props = defineProps({
-    log: {
-        type: Array,
-        required: true,
-    },
-})
+interface Props {
+    log: Array<LogEntry>
+}
+
+const props = defineProps<Props>()
 
 const isResizeEnabled = ref(false)
 

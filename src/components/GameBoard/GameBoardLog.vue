@@ -1,19 +1,13 @@
 <script setup lang="ts">
 import { watch, ref } from 'vue'
-const props = defineProps({
-    difficult: {
-        type: Number,
-        required: true,
-    },
-    isNext: {
-        type: Boolean,
-        required: true,
-    },
-    isReset: {
-        type: Boolean,
-        required: true,
-    },
-})
+
+interface Props {
+    difficult: number;
+    isNext: boolean;
+    isReset: boolean;
+}
+
+const props = defineProps<Props>()
 
 const multiplier = ref(2)
 
