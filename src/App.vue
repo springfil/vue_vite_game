@@ -68,7 +68,7 @@ provide("isInitialWidth", isInitialWidth)
     font-family: 'Rubik Bold';
     letter-spacing: 1.8px;
     text-align: center;
-    margin-top: 5px;
+   /* margin-top: 5px; */
 }
 
 .logo {

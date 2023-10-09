@@ -18,20 +18,6 @@ const props = withDefaults(defineProps<Props>(), {
     gameStatus: () => GAME_STATUS.NONE
 })
 
-// const props = defineProps({
-//     field: {
-//         type: Object,
-//         required: true,
-//     },
-//     gameStatus: {
-//         type: Number,
-//         required: false,
-//         default: GAME_STATUS.NONE,
-//     },
-// })
-
-//const emit = defineEmits(['select-field'])
-
 const emit = defineEmits<{
     (e: 'select-field', id: number): void
 }>()
@@ -77,8 +63,8 @@ const select = (id: number) => {
 <style scoped>
 .item {
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
 
     background: url('@/assets/logo.png');
     background-size: cover;
@@ -86,7 +72,7 @@ const select = (id: number) => {
 
     display: inline-block;
     border: none;
-    border-radius: 15px;
+    border-radius: 40%;
     margin: 5px;
     cursor: pointer;
 

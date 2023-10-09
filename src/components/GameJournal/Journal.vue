@@ -65,5 +65,6 @@ watch(
     overflow-x: hidden;
     height: 74px;
     max-height: 148px;
+    margin-top: 30px;
 }
 </style>

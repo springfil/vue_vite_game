@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Ref, ref, watchEffect, watch } from 'vue'
+import { Ref, ref, watchEffect, watch, computed } from 'vue'
 import GameBoardLog from '@/components/GameBoard/GameBoardLog.vue'
 import BoardItem from '@/components/GameBoard/BoardItem.vue'
 import useGameInit from '@/composable/useGameInit'
@@ -54,37 +54,33 @@ const reset = () => {
     rerolCount.value = 1
 }
 
-const fieldSize = ref('5 x 5')
-const toggleFieldSize = () => {
-    if (numberOfCells.value === NUMBER_OF_CEILS.SMALL_FIELD) {
-        numberOfCells.value = NUMBER_OF_CEILS.MEDIUM_FIELD
-        fieldSize.value = '6 x 6'
-        init()
-    } else if (numberOfCells.value === NUMBER_OF_CEILS.MEDIUM_FIELD) {
-        numberOfCells.value = NUMBER_OF_CEILS.LARGE_FIELD
-        fieldSize.value = '7 x 7'
-        init()
-    } else if (numberOfCells.value === NUMBER_OF_CEILS.LARGE_FIELD) {
-        numberOfCells.value = NUMBER_OF_CEILS.SMALL_FIELD
-        fieldSize.value = '5 x 5'
-        init()
-    }
-}
-
-const boardWidth = ref(250)
-watchEffect(() => {
-    if (numberOfCells.value === NUMBER_OF_CEILS.SMALL_FIELD) {
-        boardWidth.value = 250
-    }
-    if (numberOfCells.value === NUMBER_OF_CEILS.MEDIUM_FIELD) {
-        boardWidth.value = 300
-    }
-    if (numberOfCells.value === NUMBER_OF_CEILS.LARGE_FIELD) {
-        boardWidth.value = 350
-    }
-})
+const boardWidth = ref(275)
 
 const startButton = ref('Старт')
+
+const fieldSizeOptions = [
+  { value: NUMBER_OF_CEILS.SMALL_FIELD, size: '5 x 5' },
+  { value: NUMBER_OF_CEILS.MEDIUM_FIELD, size: '6 x 6' },
+  { value: NUMBER_OF_CEILS.LARGE_FIELD, size: '7 x 7' },
+]
+
+const selectedFieldSize = ref(NUMBER_OF_CEILS.SMALL_FIELD)
+const dropdownOpen = ref(false)
+
+const fieldSizeText = computed(() => {
+  const selectedOption = fieldSizeOptions.find(option => option.value === selectedFieldSize.value)
+  return selectedOption ? selectedOption.size : ''
+})
+
+const toggleDropdown = () => {
+  dropdownOpen.value = !dropdownOpen.value
+}
+
+const selectFieldSize = (value: number) => {
+  selectedFieldSize.value = value
+  toggleDropdown()
+}
+
 watch(gameStatus, (newStatus) => {
    // console.log('gameStatus - ', newStatus)
     if (
@@ -96,6 +92,30 @@ watch(gameStatus, (newStatus) => {
         startButton.value = 'Рерол'
     }
 })
+
+
+watchEffect(() => {
+    if (selectedFieldSize.value  === NUMBER_OF_CEILS.SMALL_FIELD) {
+        boardWidth.value = 275
+    
+    }
+    if (selectedFieldSize.value  === NUMBER_OF_CEILS.MEDIUM_FIELD) {
+        boardWidth.value = 330
+        
+    }
+    if (selectedFieldSize.value  === NUMBER_OF_CEILS.LARGE_FIELD) {
+        boardWidth.value = 385
+        
+    }
+})
+
+watch(
+    () => selectedFieldSize.value, 
+    (size) => {
+        numberOfCells.value = size
+        init()
+    }
+)
 
 </script>
 
@@ -117,18 +137,28 @@ watch(gameStatus, (newStatus) => {
                 :isReset="isReset" />
 
             <div class="btn-panel">
-                <button class="btn" @click="start" :disabled="!canStartGame">
+                <button class="btn btn-start" @click="start" :disabled="!canStartGame">
                     {{ startButton }}
                 </button>
 
-                <button
-                    class="btn field-size"
-                    @click="toggleFieldSize"
-                    :disabled="!canResize">
-                    {{ fieldSize }}
-                </button>
+                
+                <div class="dropdown">
+                    <button class="btn btn-field-size" @click="toggleDropdown" :disabled="!canResize">
+                    {{ fieldSizeText }}
+                    </button>
+                        <div class="dropdown-menu" v-show="dropdownOpen">
+                            <li class="dropdown-item" 
+                            v-for="option in fieldSizeOptions" 
+                            :key="option.value" 
+                            :class="{ 'active': option.value === selectedFieldSize }"
+                            @click="selectFieldSize(option.value) , toggleDropdown ">
+                                {{ option.size }}
+                            </li>
+                        </div>
+                </div>
 
-                <button class="btn reset" @click="reset" :disabled="!canReset">
+
+                <button class="btn btn-reset" @click="reset" :disabled="!canReset">
                     Сброс
                 </button>
             </div>
@@ -150,6 +180,15 @@ watch(gameStatus, (newStatus) => {
     border-radius: 10px;
 }
 
+.btn-panel {
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    font-family: 'Rubik';
+    font-size: 16px;
+    font-weight: 400;
+}
+
 .btn {
     background: rgba(255, 255, 255, 0.5);
     color: black;
@@ -161,17 +200,18 @@ watch(gameStatus, (newStatus) => {
     outline: none;
     font-family: 'Rubik';
     font-size: 16px;
+    font-weight: 400;
 }
 
-.btn + .field-size:hover {
+.btn-start:hover {
+    background: rgb(230, 50, 215, 0.5);
+}
+.btn-field-size:hover {
     background: rgba(206, 11, 11, 0.4);
 }
 
-.btn + .reset:hover {
+.btn-reset:hover {
     background: rgba(11, 24, 206, 0.4);
-}
-.btn:hover {
-    background: rgb(230, 50, 215, 0.5);
 }
 
 .btn:disabled {
@@ -192,5 +232,29 @@ watch(gameStatus, (newStatus) => {
 .fade-enter,
 .fade-leave-to {
     opacity: 0;
+}
+
+.dropdown {
+  position: relative;
+}
+.dropdown-menu {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
+  left: 50%; 
+  transform: translateX(-50%);
+}
+.dropdown-item {
+  display: inline-block;
+  padding: 0px 25px;
+  color: #212529;
+  cursor: pointer;
+  border: 1px solid #ccc;
+}
+.dropdown-item:hover,
+.dropdown-item.active {
+  /* color: #fff; */
+  background: rgba(206, 11, 11, 0.4);
 }
 </style>
