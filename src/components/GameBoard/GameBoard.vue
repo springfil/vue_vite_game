@@ -23,6 +23,8 @@ const store = useProgressBar()
 const { hpLimit } = storeToRefs(store)
 const numberOfCells = ref(NUMBER_OF_CEILS.SMALL_FIELD)
 const gameStatus = ref(GAME_STATUS.NONE)
+const dropdownOpen = ref(false)
+
 
 const { difficult, fields, init } = useGameInit(numberOfCells)
 
@@ -33,6 +35,7 @@ const { start, canStartGame, canReset, canResize, rerolCount } = useGameStart(
     numberOfCells,
     gameStatus,
     updateData,
+    dropdownOpen
 )
 
 const { selectField, isNext, isReset } = useGameProcess(
@@ -65,10 +68,10 @@ const fieldSizeOptions = [
 ]
 
 const selectedFieldSize = ref(NUMBER_OF_CEILS.SMALL_FIELD)
-const dropdownOpen = ref(false)
 
 const fieldSizeText = computed(() => {
   const selectedOption = fieldSizeOptions.find(option => option.value === selectedFieldSize.value)
+  console.log(selectedOption)
   return selectedOption ? selectedOption.size : ''
 })
 
@@ -216,6 +219,7 @@ watch(
 
 .btn:disabled {
     cursor: not-allowed;
+    background: rgb(255 255 255 / 15%);
 }
 
 .button-container {

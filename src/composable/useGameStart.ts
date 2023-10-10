@@ -13,6 +13,7 @@ export default function useGameStart(
     numberOfCells: Ref<number>,
     gameStatus: Ref<GAME_STATUS>,
     updateData:() => void,
+    dropdownOpen: Ref<boolean>
 ) {
     let timerId: NodeJS.Timeout
     const isInitialWidth = injectStrict<Ref<boolean>>('isInitialWidth');
@@ -28,6 +29,7 @@ export default function useGameStart(
         isInitialWidth.value = true
         canReset.value = true
         canResize.value = false
+        dropdownOpen.value = false
     }
 
     const increaseRerolCount = () => {
