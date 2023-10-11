@@ -1,0 +1,136 @@
+@media (orientation: portrait) {
+    .backdrop-flip {
+      display: block !important;
+    }
+    body {
+        /* Отключение всех событий указателя */
+        pointer-events: none; 
+        /* Запрет выделения текста мышью или жестами на сенсорных устройствах */
+        user-select: none; 
+        /* Отключение всех жестов */
+        touch-action: none; 
+      }
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    .btn-start:hover {
+    background: rgb(230, 50, 215, 0.5);
+    }
+  }  
+
+
+  @media (max-width: 1024px) {
+    .image-frame,
+    .image-frame-opponent{
+        height: 270px !important;
+        width: 180px !important;
+    }
+  }
+
+
+
+  @media (max-width: 896px) {
+    .h2{
+        font-size: 10px;
+        margin-left: 10px;
+        white-space: no-wrap !important;
+    }
+    .logo{
+        width: 30px !important; 
+        height: 30px;
+        animation-name: mobileFloatingAnimation !important ;
+    }
+
+    @keyframes mobileFloatingAnimation {
+        from {
+            transform: translate(0, -5px);
+        }
+        to {
+            transform: translate(0px, 5px);
+        }
+    }
+
+    .centered-content{
+        display: flex;
+        align-items: center;
+        margin: 5px auto 5px 0px;
+    }
+
+    .item{
+        width: 30px !important;
+        height: 30px !important; 
+        margin: 2px !important;
+    }
+  }
+
+  @media (max-width: 750px) {
+   .btn-start,
+   .btn-field-size,
+   .btn-reset
+   {
+    font-size: 10px !important;
+   }
+
+   .difficult{
+    font-size: 12px !important;
+   }
+
+   .log-entry{
+    width: 380px !important;
+    font-size: 10px !important;
+   }
+
+   .image-frame,
+    .image-frame-opponent{
+        height: 180px !important;
+        width: 120px !important;
+    }
+
+    .progress-bar-frame{
+        height: 10px !important;
+    } 
+
+    .next,
+   .reset{
+    font-size: 10px !important;
+    margin: 0 !important;
+   }
+
+   .board-log {
+    height: 50px !important; 
+    }
+
+    .log-container {
+        margin-top: 21px !important;
+    }
+
+    .btn {
+        padding: 5px 25px !important;
+    }
+
+    .btn-panel{
+        font-size: 10px !important;
+    }
+
+    .dropdown-item {
+        font-size: 10px !important;
+        padding: 0px 12px !important;    
+    }
+
+    /* .progress-bar-frame[data-v-210616bd] {
+        margin-top: 193px !important;
+        width: 180px;
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        position: fixed;
+    }
+
+    .progress-bar-frame[data-v-6d0c1d00]{
+        margin-top: 0px !important;
+        width: 180px;
+        transform: rotate(-90deg);
+        transform-origin: right top;
+        position: fixed; 
+    } */
+  }
+  

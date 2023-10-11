@@ -5,7 +5,7 @@ import GamePerson from '@/components/GamePerson/GamePerson.vue'
 import GameOpponent from '@/components/GameOpponent/GameOpponent.vue'
 import GameJournal from '@/components/GameJournal/GameJournal.vue'
 import PopupInit from '@/components/Popup/PopupInit.vue'
-
+import ScreenRotation from '@/components/ScreenRotation/ScreenRotation.vue'
 
  
 const difficultToProcess = ref(1) 
@@ -21,7 +21,7 @@ provide("isInitialWidth", isInitialWidth)
 <template>
     <div class="wrapper">
         <div class="centered-content">
-            <img class="logo" src="./assets/logo.png" alt="Vue logo" />
+            <img class="logo" src="./assets/logo.png" alt="Game logo" />
             <h2 class="h2">Коробка удачи</h2>
         </div>
         <div class="container">
@@ -40,17 +40,18 @@ provide("isInitialWidth", isInitialWidth)
         <game-journal />
     </div>
     <popup-init />
+    <screen-rotation/>
 </template>
 
 <style scoped>
 .wrapper {
     max-width: 1000px;
-    padding-left: 15px;
-    padding-right: 15px;
+    /* padding-left: 15px;
+    padding-right: 15px; */
     margin: 0 auto;
-    /* display: flex;
+    display: flex;
     flex-direction: column;
-    align-items: center; */
+    align-items: center;
 }
 
 .centered-content {
@@ -62,6 +63,7 @@ provide("isInitialWidth", isInitialWidth)
     flex-direction: row;
     /* align-items: center; */
     justify-content: space-between;
+    /* min-width: 960px; */
 }
 
 .app {
@@ -84,4 +86,6 @@ provide("isInitialWidth", isInitialWidth)
         transform: translate(0px, 10px);
     }
 }
+
+
 </style>

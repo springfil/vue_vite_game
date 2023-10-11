@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Ref, ref, watchEffect, watch, computed } from 'vue'
+import { Ref, ref, watch, computed, onMounted, onBeforeUnmount } from 'vue'
 import GameBoardLog from '@/components/GameBoard/GameBoardLog.vue'
 import BoardItem from '@/components/GameBoard/BoardItem.vue'
 import useGameInit from '@/composable/useGameInit'
@@ -58,21 +58,19 @@ const reset = () => {
 }
 
 const boardWidth = ref(275)
-
 const startButton = ref('Старт')
 
 const fieldSizeOptions = [
-  { value: NUMBER_OF_CEILS.SMALL_FIELD, size: '5 x 5' },
-  { value: NUMBER_OF_CEILS.MEDIUM_FIELD, size: '6 x 6' },
-  { value: NUMBER_OF_CEILS.LARGE_FIELD, size: '7 x 7' },
+  { value: NUMBER_OF_CEILS.SMALL_FIELD, sizeText: '5 x 5', width: [180, 275] },
+  { value: NUMBER_OF_CEILS.MEDIUM_FIELD, sizeText: '6 x 6', width: [204, 330] },
+  { value: NUMBER_OF_CEILS.LARGE_FIELD, sizeText: '7 x 7', width: [238, 385] },
 ]
 
 const selectedFieldSize = ref(NUMBER_OF_CEILS.SMALL_FIELD)
 
 const fieldSizeText = computed(() => {
   const selectedOption = fieldSizeOptions.find(option => option.value === selectedFieldSize.value)
-  console.log(selectedOption)
-  return selectedOption ? selectedOption.size : ''
+  return selectedOption ? selectedOption.sizeText : ''
 })
 
 const toggleDropdown = () => {
@@ -82,6 +80,12 @@ const toggleDropdown = () => {
 const selectFieldSize = (value: number) => {
   selectedFieldSize.value = value
   toggleDropdown()
+  updateBoardWidth()
+}
+
+const updateBoardWidth = () => {
+  const { width } : {value: number, sizeText: string ,width: number[]} = fieldSizeOptions.find( ({ value }) => value === selectedFieldSize.value )!
+  boardWidth.value = window.innerWidth <= 896 ? width[0] : width[1]
 }
 
 watch(gameStatus, (newStatus) => {
@@ -96,22 +100,6 @@ watch(gameStatus, (newStatus) => {
     }
 })
 
-
-watchEffect(() => {
-    if (selectedFieldSize.value  === NUMBER_OF_CEILS.SMALL_FIELD) {
-        boardWidth.value = 275
-    
-    }
-    if (selectedFieldSize.value  === NUMBER_OF_CEILS.MEDIUM_FIELD) {
-        boardWidth.value = 330
-        
-    }
-    if (selectedFieldSize.value  === NUMBER_OF_CEILS.LARGE_FIELD) {
-        boardWidth.value = 385
-        
-    }
-})
-
 watch(
     () => selectedFieldSize.value, 
     (size) => {
@@ -119,7 +107,15 @@ watch(
         init()
     }
 )
+    
+onMounted(() => {
+    window.addEventListener('resize', updateBoardWidth)
+    updateBoardWidth()
+})
 
+onBeforeUnmount(() => {
+    window.removeEventListener('resize', updateBoardWidth)
+})
 </script>
 
 <template>
@@ -155,7 +151,7 @@ watch(
                             :key="option.value" 
                             :class="{ 'active': option.value === selectedFieldSize }"
                             @click="selectFieldSize(option.value) , toggleDropdown ">
-                                {{ option.size }}
+                                {{ option.sizeText }}
                             </li>
                         </div>
                 </div>
@@ -206,9 +202,13 @@ watch(
     font-weight: 400;
 }
 
-.btn-start:hover {
+/* .btn-start:hover {
+    background: rgb(230, 50, 215, 0.5);
+} */
+.btn-start:active:focus {
     background: rgb(230, 50, 215, 0.5);
 }
+
 .btn-field-size:hover {
     background: rgba(206, 11, 11, 0.4);
 }
