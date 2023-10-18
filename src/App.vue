@@ -6,6 +6,7 @@ import GameOpponent from '@/components/GameOpponent/GameOpponent.vue'
 import GameJournal from '@/components/GameJournal/GameJournal.vue'
 import PopupInit from '@/components/Popup/PopupInit.vue'
 import ScreenRotation from '@/components/ScreenRotation/ScreenRotation.vue'
+import DebagPanelVue from '@/components/DebagPanel/DebagPanel.vue'
 
  
 const difficultToProcess = ref(1) 
@@ -16,12 +17,23 @@ provide('difficultToJournal', difficultToJournal)
 
 const isInitialWidth = ref(true) 
 provide("isInitialWidth", isInitialWidth)
+
+const showDebugPanel = ref(false)
+const clickCount = ref(0)
+
+const toggleDebugPanel = () => {
+  clickCount.value++
+  if (clickCount.value === 5) {
+    showDebugPanel.value = !showDebugPanel.value
+    clickCount.value = 0
+  }
+}
 </script>
 
 <template>
     <div class="wrapper">
         <div class="centered-content">
-            <img class="logo" src="./assets/logo.png" alt="Game logo" />
+            <img class="logo" src="./assets/logo.png" alt="Game logo" @click="toggleDebugPanel"/>
             <h2 class="h2">Коробка удачи</h2>
         </div>
         <div class="container">
@@ -38,7 +50,9 @@ provide("isInitialWidth", isInitialWidth)
             </div>
         </div>
         <game-journal />
+        <debag-panel-vue v-if="showDebugPanel"/>
     </div>
+   
     <popup-init />
     <screen-rotation/>
 </template>
