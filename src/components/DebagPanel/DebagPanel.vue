@@ -1,5 +1,5 @@
-<script setup>
-import { ref, watch } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
 import { useProgressBar } from '@/store/progressBar'
 import { storeToRefs } from 'pinia'
 
@@ -8,7 +8,7 @@ const { hpPerson, hpOpponent } = storeToRefs(store)
 
 const isValidInput = ref(true)
 
-const validateInput = (value) => {
+const validateInput = (value: number) => {
     if (value >= 0 && value <= 180) {
         isValidInput.value = true
     } else {

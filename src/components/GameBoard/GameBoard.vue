@@ -10,13 +10,13 @@ import { NUMBER_OF_CEILS } from '@/constants/NUMBER_OF_CEILS'
 import { useProgressBar } from '@/store/progressBar'
 import { storeToRefs } from 'pinia'
 import { injectStrict } from '@/utils/injectStrict'
+import { throttle } from '@/utils/throttle'
 
 const difficultToProcess = injectStrict<Ref<number>>('difficultToProcess');
 const isInitialWidth = injectStrict<Ref<boolean>>('isInitialWidth');
 
 const updateData = () => {
     difficultToProcess.value = difficult.value
-    // console.log(difficult.value)
 }
 
 const store = useProgressBar()
@@ -69,27 +69,31 @@ const fieldSizeOptions = [
 const selectedFieldSize = ref(NUMBER_OF_CEILS.SMALL_FIELD)
 
 const fieldSizeText = computed(() => {
-  const selectedOption = fieldSizeOptions.find(option => option.value === selectedFieldSize.value)
-  return selectedOption ? selectedOption.sizeText : ''
+    const selectedOption = fieldSizeOptions.find(option => option.value === selectedFieldSize.value)
+    return selectedOption ? selectedOption.sizeText : ''
 })
 
 const toggleDropdown = () => {
-  dropdownOpen.value = !dropdownOpen.value
+    dropdownOpen.value = !dropdownOpen.value
 }
 
 const selectFieldSize = (value: number) => {
-  selectedFieldSize.value = value
-  toggleDropdown()
-  updateBoardWidth()
+    selectedFieldSize.value = value
+    toggleDropdown()
+    updateBoardWidth()
 }
 
-const updateBoardWidth = () => {
-  const { width } : {value: number, sizeText: string ,width: number[]} = fieldSizeOptions.find( ({ value }) => value === selectedFieldSize.value )!
-  boardWidth.value = window.innerWidth <= 896 ? width[0] : width[1]
-}
+const updateBoardWidth = (): void => {
+    const foundOption = fieldSizeOptions.find(({ value }) => value === selectedFieldSize.value);
+    if (foundOption) {
+        const { width }: { value: number, sizeText: string, width: number[] } = foundOption;
+        boardWidth.value = window.innerWidth <= 896 ? width[0] : width[1];
+    }
+};
+
+const throttledUpdateBoardWidth = throttle(updateBoardWidth, 100);
 
 watch(gameStatus, (newStatus) => {
-   // console.log('gameStatus - ', newStatus)
     if (
         newStatus === GAME_STATUS.NONE ||
         newStatus === GAME_STATUS.RESET
@@ -107,14 +111,14 @@ watch(
         init()
     }
 )
-    
+
 onMounted(() => {
-    window.addEventListener('resize', updateBoardWidth)
+    window.addEventListener('resize', throttledUpdateBoardWidth )
     updateBoardWidth()
 })
 
 onBeforeUnmount(() => {
-    window.removeEventListener('resize', updateBoardWidth)
+    window.removeEventListener('resize', throttledUpdateBoardWidth)
 })
 </script>
 
@@ -202,12 +206,12 @@ onBeforeUnmount(() => {
     font-weight: 400;
 }
 
-/* .btn-start:hover {
-    background: rgb(230, 50, 215, 0.5);
-} */
-.btn-start:active:focus {
+.btn-start:hover {
     background: rgb(230, 50, 215, 0.5);
 }
+/* .btn-start:active:focus {
+    background: rgb(230, 50, 215, 0.5);
+} */
 
 .btn-field-size:hover {
     background: rgba(206, 11, 11, 0.4);
