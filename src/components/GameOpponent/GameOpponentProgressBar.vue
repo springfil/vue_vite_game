@@ -60,4 +60,10 @@ watch(
     border-radius: 15px;
     transition: width 1s;
 }
+
+@media (max-width: 750px) {
+    .progress-bar-frame{
+        height: 10px;
+    } 
+}
 </style>

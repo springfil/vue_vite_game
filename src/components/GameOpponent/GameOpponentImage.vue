@@ -53,4 +53,18 @@ defineProps<Props>()
   }
 }
 
+
+@media (max-width: 1024px) {
+    .image-frame-opponent{
+        height: 270px ;
+        width: 180px ;
+    }
+  }
+
+@media (max-width: 750px) {
+    .image-frame-opponent{
+        height: 180px;
+        width: 120px;
+    }
+} 
 </style>

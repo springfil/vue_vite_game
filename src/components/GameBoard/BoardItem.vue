@@ -93,4 +93,12 @@ const select = (id: number) => {
     background-position: center;
     transform: rotateX(720deg);
 }
+
+@media (max-width: 896px) {
+    .item{
+        width: 30px;
+        height: 30px;
+        margin: 2px;
+    }
+}
 </style>

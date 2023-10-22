@@ -51,4 +51,18 @@ defineProps<Props>()
         opacity: 1;
     }
 }
+
+@media (max-width: 1024px) {
+    .image-frame{
+        height: 270px;
+        width: 180px;
+    }
+}
+
+@media (max-width: 750px) {
+    .image-frame{
+        height: 180px;
+        width: 120px;
+    }
+}
 </style>

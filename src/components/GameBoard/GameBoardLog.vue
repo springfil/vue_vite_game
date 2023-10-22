@@ -43,4 +43,20 @@ watch(
 .next{
     font-size: 12px;
 }
+
+@media (max-width: 750px) {
+   .difficult{
+    font-size: 12px;
+   }
+
+    .next,
+   .reset{
+    font-size: 10px;
+    margin: 0;
+   }
+
+   .board-log {
+    height: 50px ; 
+    }
+}
 </style>

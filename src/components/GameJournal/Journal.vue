@@ -67,4 +67,15 @@ watch(
     max-height: 148px;
     margin-top: 30px;
 }
+
+@media (max-width: 750px) {
+   .log-entry{
+    width: 380px;
+    font-size: 10px;
+   }
+   .log-container {
+         margin-top: 21px;
+     }
+ 
+}
 </style>

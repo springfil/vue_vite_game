@@ -60,8 +60,6 @@ const toggleDebugPanel = () => {
 <style scoped>
 .wrapper {
     max-width: 1000px;
-    /* padding-left: 15px;
-    padding-right: 15px; */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -75,18 +73,14 @@ const toggleDebugPanel = () => {
 .container {
     display: flex;
     flex-direction: row;
-    /* align-items: center; */
     justify-content: space-between;
-    /* min-width: 960px; */
 }
-
 .app {
     font-family: 'Rubik Bold';
     letter-spacing: 1.8px;
     text-align: center;
    /* margin-top: 5px; */
 }
-
 .logo {
     width: 70px;
     animation: floatingAnimation 1.5s infinite ease-in-out alternate;
@@ -101,5 +95,32 @@ const toggleDebugPanel = () => {
     }
 }
 
+@media (max-width: 896px) {
+    .h2{
+        font-size: 10px;
+        margin-left: 10px;
+        white-space: no-wrap ;
+    }
+    .logo{
+        width: 30px; 
+        height: 30px;
+        animation-name: mobileFloatingAnimation ;
+    }
+
+    @keyframes mobileFloatingAnimation {
+        from {
+            transform: translate(0, -5px);
+        }
+        to {
+            transform: translate(0px, 5px);
+        }
+    }
+
+    .centered-content{
+        display: flex;
+        align-items: center;
+        margin: 5px auto 5px 0px;
+    }
+}
 
 </style>

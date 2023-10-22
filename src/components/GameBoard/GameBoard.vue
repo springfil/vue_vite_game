@@ -206,16 +206,6 @@ onBeforeUnmount(() => {
     font-weight: 400;
 }
 
-.btn-start:hover {
-    background: rgb(230, 50, 215, 0.5);
-}
-/* .btn-start:active:focus {
-    background: rgb(230, 50, 215, 0.5);
-} */
-
-.btn-field-size:hover {
-    background: rgba(206, 11, 11, 0.4);
-}
 
 .btn-reset:hover {
     background: rgba(11, 24, 206, 0.4);
@@ -262,7 +252,39 @@ onBeforeUnmount(() => {
 }
 .dropdown-item:hover,
 .dropdown-item.active {
-  /* color: #fff; */
   background: rgba(206, 11, 11, 0.4);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .btn-start:hover {
+        background: rgb(230, 50, 215, 0.5);
+    }
+
+    .btn-field-size:hover {
+        background: rgba(206, 11, 11, 0.4);
+    }
+
+}
+
+@media (max-width: 750px) {
+   .btn-start,
+   .btn-field-size,
+   .btn-reset
+   {
+    font-size: 10px;
+   }
+
+    .btn {
+        padding: 5px 25px;
+    }
+
+    .btn-panel{
+        font-size: 10px;
+    }
+
+    .dropdown-item {
+        font-size: 10px ;
+        padding: 0px 12px;    
+    }
 }
 </style>
